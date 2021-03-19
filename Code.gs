@@ -1,3 +1,4 @@
+var url ="https://docs.google.com/spreadsheets/d/1MHSmqBP1UujdSghSKNV1SSHqAdkDhanzRBO84zsn5Ac/edit#gid=0";
 var Route = {};
 Route.path = function(route, callback) {
   Route[route] = callback;
@@ -32,7 +33,11 @@ function loadIndex() {
 }
 
 function loadCalculator() {
-  return render("calculator");
+  var ss = SpreadsheetApp.openByUrl(url);
+  var ws = ss.getSheetByName("DATA");
+  var lr = ws.getLastRow()-1;
+  var list = ws.getRange(2,1,lr,1).getValues();
+  return render("calculator", {options: list, last: lr});
 }
 
 function loadCheckOut() {

@@ -4,6 +4,28 @@
     <base target="_top">
   </head>
   <body>
-    <p>Calculator</p>
+    <h1>Calculator</h1>
+  
+    <div>
+    <label>Which iPhone do you currently own?</label>
+    <select id="currentDevice">     
+        <? for(var i=0;i < last; i++){ ?>
+        <option> <?= options[i]; ?> </option>      
+        <? } ?>
+    </select>
+    </div>
+    <br>
+    <div>
+    <label>Which iPhone would you like to upgrade to?</label>
+    <select id="desiredDevice">     
+        <? for(var i=0;i < last; i++){ ?>
+        <option> <?= options[i]; ?> </option>      
+        <? } ?>
+    </select>
+    </div>
+
+    <script>
+      
+    </script>
   </body>
 </html>
