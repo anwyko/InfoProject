@@ -6,7 +6,7 @@ Route.path = function(route, callback) {
 
 function doGet(e) {
   Route.path("index", loadIndex);
-  Route.path("calculator", loadCalculator);
+  Route.path("estimator", loadEstimator);
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
 
@@ -15,6 +15,11 @@ function doGet(e) {
   } else {
     return render("testmenu");
   }
+}
+
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename)
+      .getContent();
 }
 
 function render(page, data) {
@@ -28,16 +33,24 @@ function render(page, data) {
   return tmp.evaluate();
 }
 
+function loadOptions() {
+  var ss = SpreadsheetApp.openByUrl(url);
+  var ws = ss.getSheetByName("DATA");
+  var lr = ws.getLastRow()-1;
+  var list2 = ws.getRange(2,1,lr,1).getValues();
+  return list2;
+}
+
 function loadIndex() {
   return render("index");
 }
 
-function loadCalculator() {
+function loadEstimator() {
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("DATA");
   var lr = ws.getLastRow()-1;
   var list = ws.getRange(2,1,lr,1).getValues();
-  return render("calculator", {options: list, last: lr});
+  return render("estimator", {options: list, last: lr});
 }
 
 function loadCheckOut() {
