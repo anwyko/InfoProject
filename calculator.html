@@ -2,28 +2,30 @@
 <html>
   <head>
     <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   </head>
   <body>
-    <h1>Calculator</h1>
-  
-    <div>
-    <label>Which iPhone do you currently own?</label>
-    <select id="currentDevice">     
-        <? for(var i=0;i < last; i++){ ?>
-        <option> <?= options[i]; ?> </option>      
-        <? } ?>
-    </select>
+    <h1 style="text-align: center">Calculator</h1>
+    <div class="container">
+      <div class="row">
+        <label>Which iPhone do you currently own?</label> <br>
+        <select id="currentDevice" class="browser-default">     
+            <? for(var i=0;i < last; i++){ ?>
+            <option> <?= options[i]; ?> </option>      
+            <? } ?>
+        </select>
+      </div>
+      <br>
+      <div class="row">
+        <label>Which iPhone would you like to upgrade to?</label> <br>
+        <select id="desiredDevice" class="browser-default">     
+            <? for(var i=0;i < last; i++){ ?>
+            <option> <?= options[i]; ?> </option>      
+            <? } ?>
+        </select>
+      </div>
     </div>
-    <br>
-    <div>
-    <label>Which iPhone would you like to upgrade to?</label>
-    <select id="desiredDevice">     
-        <? for(var i=0;i < last; i++){ ?>
-        <option> <?= options[i]; ?> </option>      
-        <? } ?>
-    </select>
-    </div>
-
     <script>
       
     </script>
