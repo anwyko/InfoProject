@@ -49,8 +49,8 @@ function loadEstimator() {
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("DATA");
   var lr = ws.getLastRow()-1;
-  var list = ws.getRange(2,1,lr,1).getValues();
-  return render("estimator", {options: list, last: lr});
+  var oplist = ws.getRange(2,1,lr,1).getValues();
+  return render("estimator", {options: oplist, last: lr});
 }
 
 function loadCheckOut() {

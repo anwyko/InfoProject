@@ -16,110 +16,177 @@
           //background-color:#0ea5eb;
           border-radius:10px;
       }
-      .row {
-        width: 40vw;
+      .row {     
+        width: 50vw;
       }
-      body {
-        //background-color: gray;
+      
+      h1 { 
+        text-align: center;
+        color: #a7e8f8; 
+        font-family: 'Julius Sans One', sans-serif; 
+        font-size: 32px; 
+        font-weight: bold; 
+        line-height: 32px; 
+        margin: 0 0 24px; 
+        text-shadow: 1px 1px 1px #082b34; 
       }
+
+      nav {
+        position: sticky;
+        top: 0;
+      }
+
+      nav ul li:hover {
+   background-color: grey;
+}
+
+      .brand-logo img {
+          height: 64px;
+      }
+
+      .nav-wrapper {
+        background-color: black;
+      }
+      
+      body::before {
+    
+        //background-image: url("https://drive.google.com/uc?export=download&id=1yGkf-q0ix2b2WpdPB9sP5iO4ojxyg4za");
+        //background-image: url("https://drive.google.com/uc?export=download&id=1TlgA5NHQ0T-Rhoet2EXTXqYTFCcH_-O8");
+        background-size: 100%;
+        background-position: stretch;
+        background-repeat: no-repeat;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -2;
+        opacity: 0.3;
+        //top: -30px;
+  }
     </style>
   </head>
 
   <body>
 
+      <nav>
+    <div class="nav-wrapper">
+      <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" src="https://drive.google.com/uc?export=download&id=1OgFpBZ173PYjvigcwnobo2g6R7l6oI8C"></a>
+      <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">Checkout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="items">
+    <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+    <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+    <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+    <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">Checkout</a></li>
+  </ul>
+        
+    
     <br>
 
-    <div class="container">
+  <main>
+
+      <div class="container">
+
+      </div>
+      <div class="container">
+        <div class="row">
+          <label class="bubble">Which iPhone do you currently own?</label> <br>
+          <select id="cd" class="browser-default">     
+              <? for(var i=0;i < last; i++){ ?>
+              <option> <?= options[i]; ?> </option>      
+              <? } ?>
+          </select>
+        </div>
+
       <div class="row">
-        <label>Which iPhone do you currently own?</label> <br>
-        <select id="currentDevice" class="browser-default">     
-            <? for(var i=0;i < last; i++){ ?>
+          <label>Are there any screen issues?</label>
+          <select class="browser-default" id="s">
+            <option>None - no scratches, cracks, chips, touch issues or glitches</option>
+            <option>Minor issues</option>
+            <option>Major issues</option>
+          </select>
+      </div>   
+      <div class="row">
+          <label>Any battery issues?</label>
+          <select  class="browser-default" id="b">
+            <option>None - battery health is at least 85%, doesn't drain quickly or overheat</option>
+            <option>Minor issues</option>
+            <option>Major issues</option>
+          </select>
+      </div> 
+      <div class="row">
+          <label>What's the condition of the housing?</label>
+          <select  class="browser-default"  id="h">
+            <option>Mint - no scratches, dents, discolorations or cracks</option>
+            <option>Minor wear</option>
+            <option>Major wear</option>
+          </select>
+      </div> 
+      <div class="row">
+          <label>Any issues with the Home Button or Touch/Face ID?</label>
+          <select  class="browser-default"  id="t">
+            <option>None - works at all times</option>
+            <option>Minor issues</option>
+            <option>Major issues</option>
+          </select>
+      </div> 
+      <div class="row">
+          <label>Any issues with either the Front Camera or the Ear Speaker?</label>
+          <select  class="browser-default"  id="fc">
+            <option>None - no blurriness or skakiness and ear speaker plays loudly/clearly</option>
+            <option>Minor issues</option>
+            <option>Major issues</option>
+          </select>
+      </div> 
+      <div class="row">
+          <label>Any issues with the back Camera?</label>
+          <select  class="browser-default"  id="bc">
+            <option>None - no blurriness or shakiness</option>
+            <option>Minor issues</option>
+            <option>Major issues</option>
+          </select>
+      </div> 
+      <div class="row">
+          <label>Any issues with either the Charging Port, Microphone, Headphone Jack or loudspeaker?</label>
+          <select  class="browser-default"  id="cp">
+            <option>None - charging port isn't slack, doesn't short, loudspeaker plays at full volume and the mic records clearly</option>
+            <option>Minor issues</option>
+            <option>Major issues</option>
+          </select>
+      </div> 
+      <div class="row">
+        <label>Which iPhone would you like to upgrade to?</label><br>
+        <select id="dd" class="browser-default">     
+            <? for(var i=4;i < last; i++){ ?>
             <option> <?= options[i]; ?> </option>      
             <? } ?>
         </select>
       </div>
+      
+      
+      <br>
 
-    <div class="row">
-        <label>Are there any screen issues?</label>
-        <select  class="browser-default" id="s">
-           <option>None - no scratches, cracks, chips, touch issues or glitches</option>
-           <option>Minor issues</option>
-           <option>Major issues</option>
-        </select>
-    </div>   
-    <div class="row">
-        <label>Any battery issues?</label>
-        <select  class="browser-default" id="b">
-           <option>None - battery health is at least 85%, doesn't drain quickly or overheat</option>
-           <option>Minor issues</option>
-           <option>Major issues</option>
-        </select>
-    </div> 
-    <div class="row">
-        <label>What's the condition of the housing?</label>
-        <select  class="browser-default"  id="h">
-           <option>Mint - no scratches, dents, discolorations or cracks</option>
-           <option>Minor wear</option>
-           <option>Major wear</option>
-        </select>
-    </div> 
-    <div class="row">
-        <label>Any issues with the Home Button or Touch/Face ID?</label>
-        <select  class="browser-default"  id="t">
-           <option>None - works at all times</option>
-           <option>Minor issues</option>
-           <option>Major issues</option>
-        </select>
-    </div> 
-    <div class="row">
-        <label>Any issues with either the Front Camera or the Ear Speaker?</label>
-        <select  class="browser-default"  id="fc">
-           <option>None - no blurriness or skakiness and ear speaker plays loudly/clearly</option>
-           <option>Minor issues</option>
-           <option>Major issues</option>
-        </select>
-    </div> 
-    <div class="row">
-        <label>Any issues with the back Camera?</label>
-        <select  class="browser-default"  id="bc">
-           <option>None - no blurriness or shakiness</option>
-           <option>Minor issues</option>
-           <option>Major issues</option>
-        </select>
-    </div> 
-    <div class="row">
-        <label>Any issues with either the Charging Port, Microphone, Headphone Jack or loudspeaker?</label>
-        <select  class="browser-default"  id="cp">
-           <option>None - charging port isn't slack, doesn't short, loudspeaker plays at full volume and the mic records clearly</option>
-           <option>Minor issues</option>
-           <option>Major issues</option>
-        </select>
-    </div> 
-    <div class="row">
-      <label>Which iPhone would you like to upgrade to?</label><br>
-      <select id="desiredDevice" class="browser-default">     
-          <? for(var i=4;i < last; i++){ ?>
-          <option> <?= options[i]; ?> </option>      
-          <? } ?>
-      </select>
-    </div>
-    
-    
-    <br>
-
-    <div class="row">
-    <div class="input-field" >
-    <label> Valuation: </label><input disabled type="text" id="bp">
-    </div>
-    </div>
-    <div class="row">
-    <div class="input-field">
-    <label>Trade Difference: </label><input disabled type="text" id="td">
-    </div> 
-    </div>
-    
-    <div class="row">
-    <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" name="action">Calculate<i class="material-icons right">send</i></button>
+      <div class="row">
+      <div class="input-field" >
+      <label> Valuation: </label><input disabled type="text" id="bp">
+      </div>
+      </div>
+      <div class="row">
+      <div class="input-field">
+      <label>Trade Difference: </label><input disabled type="text" id="td">
+      </div> 
+      </div>
+      
+      <div class="row">
+ <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" name="action">Calculate<i class="material-icons right">send</i></button>
         
     </div>
     
@@ -130,17 +197,38 @@
 <button id="btn2" class="btn waves-effect waves-light black btn-large" type="submit" name="action">Add to Cart<i class="material-icons right">shopping_cart</i></button>
 
 </div> 
-</div>
+  </div>
+</main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+
+    var dropdowns = document.querySelectorAll('.dropdown-trigger')
+for (var i = 0; i < dropdowns.length; i++){
+    M.Dropdown.init(dropdowns[i]);
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+
     function load() {
       google.script.run.withSuccessHandler(showOptions)
           .loadOptions();
     }
 
     function showOptions(list) {
-      let currentDevice = document.querySelector("#currentDevice");
-      let desiredDevice = document.querySelector("#desiredDevice");
+      let currentDevice = document.querySelector("#cd");
+      let desiredDevice = document.querySelector("#dd");
       for (let i = 0; i < list.length; i++) { 
           let option = document.createElement("option");
           let option2 = document.createElement("option");
@@ -151,6 +239,31 @@
       }
     }
     //load();
+
+    document.getElementById("btn").addEventListener("click",callcalculator);
+    document.getElementById("btn2").addEventListener("click",launch);
+    
+    function callcalculator(){
+
+       var request = {};
+       request.cd = document.getElementById("cd").value; 
+       request.dd = document.getElementById("dd").value; 
+       request.s = document.getElementById("s").value; 
+       request.b = document.getElementById("b").value; 
+       request.h = document.getElementById("h").value; 
+       request.t = document.getElementById("t").value; 
+       request.fc = document.getElementById("fc").value; 
+       request.bc = document.getElementById("bc").value;
+       request.cp = document.getElementById("cp").value; 
+       google.script.run.withSuccessHandler(report).calculate(request);
+    
+    }
+    
+    function report(value){
+    document.getElementById("bp").value = value.bp;
+    document.getElementById("td").value = value.td;
+    M.updateTextFields();
+    } 
   </script> 
 
   </body>
