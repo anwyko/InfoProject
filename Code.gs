@@ -30,7 +30,9 @@ function render(page, data) {
       tmp[key] = data[key];
     });
   }
-  return tmp.evaluate();
+  
+  //return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
 function loadOptions() {
