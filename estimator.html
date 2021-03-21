@@ -146,12 +146,14 @@
 
       #cartIcon {
         position: relative;
-        left: 15px;
+        left: 10px;
+        //text-align: center;
       }
 
-      #cart {
+      #cartIconNav {
         position: relative;
-        padding-right: 10px;
+        margin-right: 5px;
+        //text-align: center;
       }
     </style>
   </head>
@@ -167,7 +169,7 @@
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
-                <li id="cart"><a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout"></a></li>
+                <li id="cart"></li>
               </ul>
             </div>
           </nav>
@@ -176,7 +178,7 @@
             <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
             <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
             <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
-            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">Checkout</a></li>
+            <li id="navCart"></li>
           </ul>
     </header>
 
@@ -338,8 +340,10 @@
         let cartCount = 0;
         document.getElementById("btn").addEventListener("click",callcalculator);
         //document.getElementById("btn2").addEventListener("click",launch);
-        let item = document.querySelector("#cart");
-        item.innerHTML = `<i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})`;
+        document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+        <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+        document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+        <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
 
         function callcalculator(){
 
