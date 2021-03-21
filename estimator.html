@@ -111,12 +111,12 @@
       }
 
       .input-field input[type=text]:disabled {
-color: #000;
-border-color:gray;
-border-bottom-style:solid;
-width: 200px;
-font-size:20px;
-}
+        color: #000;
+        border-color:gray;
+        border-bottom-style:solid;
+        width: 200px;
+        font-size:20px;
+      }
 
       #banner {
         //border: solid black;
@@ -141,9 +141,18 @@ font-size:20px;
         z-index: -2;
         opacity: 0.2;
         //top: 10px;
-        margin: auto;
-        
-  }
+        margin: auto;        
+      }
+
+      #cartIcon {
+        position: relative;
+        left: 15px;
+      }
+
+      #cart {
+        position: relative;
+        padding-right: 10px;
+      }
     </style>
   </head>
 
@@ -151,13 +160,14 @@ font-size:20px;
       <header>
             <nav>
             <div class="nav-wrapper">
-              <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
+              <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
+              src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
               <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
-                <li id="edge"><a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">Checkout</a></li>
+                <li id="cart"><a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout"></a></li>
               </ul>
             </div>
           </nav>
@@ -173,9 +183,11 @@ font-size:20px;
     <main>
             <div id="banner" class="section">
                 <p id="label">Turn the iPhone you have into the iPhone you want</p>
-                <p class="inst">Start by telling us a bit about your current iPhone
-                  <p class="inst">Select the brand new iPhone you'd like to upgrade to
-                  <p class="inst">Hit Calculate for a real-time estimate</p>
+                <ul>
+                    <li class="inst">Start by telling us a bit about your current iPhone</li>
+                    <li class="inst">Select the brand new iPhone you'd like to upgrade to</li>
+                    <li class="inst">Then hit Calculate for a real-time estimate</li>
+                </ul>
             </div>
           
             <div class="section">
@@ -192,50 +204,57 @@ font-size:20px;
             <div class="row">
                 <label>Are there any screen issues?</label>
                 <select class="browser-default" id="s">
-                  <option>None - no scratches, cracks, chips, touch issues or glitches</option>
-                  <option>Yes</option>
+                  <option>None - no scratches or cracks</option>
+                  <option>Yes - minor issues</option>
+                  <option>Yes - major issues</option>
                 </select>
             </div>   
             <div class="row">
                 <label>Any battery issues?</label>
                 <select  class="browser-default" id="b">
-                  <option>None - battery health is at least 85%, doesn't drain quickly or overheat</option>
-                  <option>Yes</option>
+                  <option>None - battery health is at least 85%</option>
+                  <option>Yes - minor issues</option>
+                  <option>Yes - major issues</option>
                 </select>
             </div> 
             <div class="row">
                 <label>What's the condition of the housing?</label>
                 <select  class="browser-default"  id="h">
-                  <option>Mint - no scratches, dents, discolorations or cracks</option>
-                  <option>Not Mint</option>
+                  <option>Mint - no scratches or dents</option>
+                  <option>Not mint - minor wear</option>
+                  <option>Not mint - major wear</option>
                 </select>
             </div> 
             <div class="row">
                 <label>Any issues with the Home Button or Touch/Face ID?</label>
                 <select  class="browser-default"  id="t">
-                  <option>None - works at all times</option>
-                  <option>Yes</option>
+                  <option>None - functions at all times</option>
+                  <option>Yes - minor issues</option>
+                  <option>Yes - major issues</option>
                 </select>
             </div> 
             <div class="row">
-                <label>Any issues with either the Front Camera or the Ear Speaker?</label>
+                <label>Any issues with either the Front Camera?</label>
                 <select  class="browser-default"  id="fc">
-                  <option>None - no blurriness or skakiness and ear speaker plays loudly/clearly</option>
-                  <option>Yes</option>
+                  <option>None - no blurriness or skakiness</option>
+                  <option>Yes - minor issues</option>
+                  <option>Yes - major issues</option>
                 </select>
             </div> 
             <div class="row">
-                <label>Any issues with the back Camera?</label>
+                <label>Any issues with the Back Camera?</label>
                 <select  class="browser-default"  id="bc">
                   <option>None - no blurriness or shakiness</option>
-                  <option>Yes</option>
+                  <option>Yes - minor issues</option>
+                  <option>Yes - major issues</option>
                 </select>
             </div> 
             <div class="row">
-                <label>Any issues with either the Charging Port, Microphone, Headphone Jack or loudspeaker?</label>
+                <label>Any issues with the Charging Port or speakers?</label>
                 <select  class="browser-default"  id="cp">
-                  <option>None - charging port isn't slack, doesn't short, loudspeaker plays at full volume and the mic records clearly</option>
-                  <option>Yes</option>
+                  <option>None - charging port doesn't short and speakers play properly</option>
+                  <option>Yes - minor issues</option>
+                  <option>Yes - major issues</option>
                 </select>
             </div> 
             <div class="row">
@@ -246,8 +265,7 @@ font-size:20px;
                   <? } ?>
               </select>
             </div>
-            
-            
+                    
             <br>
 
             <div class="row">
@@ -262,15 +280,16 @@ font-size:20px;
             </div>
             
             <div class="row">
-            <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" name="action">Calculate<i class="material-icons right">send</i></button>
+            <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" 
+            name="action">Calculate<i class="material-icons right">send</i></button>
               
             </div>
           
             <div class="spacer"></div>
-
           
             <div class="row">
-            <button id="btn2" class="btn waves-effect waves-light black btn-large" type="submit" name="action">Add to Cart<i class="material-icons right">shopping_cart</i></button>
+            <button id="btn2" class="btn waves-effect waves-light black btn-large" type="submit" 
+            name="action">Add to Cart<i class="material-icons right">shopping_cart</i></button>
             <br><br><br><br>
             </div> 
             </div>
@@ -278,15 +297,11 @@ font-size:20px;
 
     <footer>
             <p>COPYRIGHT© 2021 iSAVE, LTD. ALL RIGHTS RESERVED.</p>
-
     </footer>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
-    <script>
-        
+    <script>    
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
@@ -320,9 +335,12 @@ font-size:20px;
         }
         //load();
 
+        let cartCount = 0;
         document.getElementById("btn").addEventListener("click",callcalculator);
-        document.getElementById("btn2").addEventListener("click",launch);
-        
+        //document.getElementById("btn2").addEventListener("click",launch);
+        let item = document.querySelector("#cart");
+        item.innerHTML = `<i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})`;
+
         function callcalculator(){
 
           var request = {};
@@ -340,10 +358,12 @@ font-size:20px;
         }
         
         function report(value){
-        document.getElementById("bp").value = value.bp;
-        document.getElementById("td").value = value.td;
-        M.updateTextFields();
+            document.getElementById("bp").value = value.bp;
+            document.getElementById("td").value = value.td;
+            M.updateTextFields();
         } 
+
+
     </script> 
 
   </body>
