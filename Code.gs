@@ -30,7 +30,6 @@ function render(page, data) {
       tmp[key] = data[key];
     });
   }
-  
   //return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
   return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
@@ -51,8 +50,13 @@ function loadEstimator() {
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("DATA");
   var lr = ws.getLastRow()-1;
-  var oplist = ws.getRange(2,1,lr,1).getValues();
-  return render("estimator", {options: oplist, last: lr});
+  var oplist = ws.getRange(2,1,lr,2).getValues();
+  var lr2 = 0;
+  for (let i=0; oplist[i][1] != '-' ; i++) {
+      lr2++;
+  }
+  Logger.log(lr2);
+  return render("estimator", {options: oplist, last: lr, last2: lr2});
 }
 
 function loadCheckOut() {
@@ -62,3 +66,56 @@ function loadCheckOut() {
 function loadAbout() {
   return render("about");
 }
+
+
+
+function calculate(request){
+ 
+  var list3;
+  var index;
+  var index2 = [];
+  var value = {};
+  var position, position2;
+  var maxbprice=0, bprice=0, bbprice=0, sprice=0, cdifference=0;
+  var s=0, b=0, h=0, t=0, fc=0, bc=0, cp=0;
+  var ss = SpreadsheetApp.openByUrl(url);
+  var ws = ss.getSheetByName("DATA");
+  var lr = ws.getLastRow()-1;
+
+  index = ws.getRange(2,1,lr,1).getValues();
+  list3 = ws.getRange(2,1,lr,15).getValues();
+
+  for(var i=0;i<index.length;i++){
+    index2[i] = index[i][0];
+  } 
+
+  position = index2.indexOf(request.cd);
+  position2 = index2.indexOf(request.dd);
+  maxbprice = list3[position][1];
+  
+  if(position2!=(-1)){sprice = list3[position2][2];}
+  else {sprice="-"} 
+
+  if(request.s == "Yes"){s = list3[position][3];}
+  if(request.b == "Yes"){b = list3[position][4];}
+  if(request.h == "Not Mint"){h = list3[position][5];}
+  if(request.t == "Yes"){t = list3[position][6];}
+  if(request.fc == "Yes"){fc = list3[position][8];}
+  if(request.bc == "Yes"){bc = list3[position][9];}
+  if(request.cp == "Yes"){cp = list3[position][10];}
+
+  if(maxbprice=="-" ||s=="-" ||b=="-" ||h=="-" ||t=="-" ||fc=="-" ||bc=="-" ||cp=="-") 
+  {bprice = "No Purchase";}
+  else {bprice = "$" + (maxbprice-s-b-h-t-fc-bc-cp).toFixed(2); bbprice = (maxbprice-s-b-h-t-fc-bc-cp);}
+
+  if(bbprice < 100){bprice="No Purchase";bbprice="No Purchase";} 
+
+  if(sprice!="-" && bprice!="No Purchase") {cdifference = "$" + (sprice-bbprice).toFixed(2);} 
+  else {cdifference = "No Trade";} 
+
+  value.bp = bprice;
+  value.td = cdifference;
+
+  return value;
+  
+} 
