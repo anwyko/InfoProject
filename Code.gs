@@ -30,8 +30,8 @@ function render(page, data) {
       tmp[key] = data[key];
     });
   }
-  return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-  //return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  //return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
 function loadOptions() {
@@ -66,8 +66,6 @@ function loadCheckOut() {
 function loadAbout() {
   return render("about");
 }
-
-
 
 function calculate(request){
  
