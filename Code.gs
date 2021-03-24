@@ -9,6 +9,7 @@ function doGet(e) {
   Route.path("estimator", loadEstimator);
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
+  Route.path("template", loadTemplate);
 
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
@@ -65,6 +66,10 @@ function loadCheckOut() {
 
 function loadAbout() {
   return render("about");
+}
+
+function loadTemplate() {
+  return render("template");
 }
 
 function calculate(request){

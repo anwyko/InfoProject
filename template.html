@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- HEADER AND FOOTER TEMPLATE -->
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+      * {
+          box-sizing: border-box;
+      }
+    
+      body {
+        display: grid;
+        grid-template-rows: 1fr 15fr .5fr;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.85em;
+        color: white;
+        background-color: black;
+        box-shadow: 0px 0 10px rgba(0, 0, 0, 0.7);
+      }
+
+      nav {
+        height:100%
+        position: sticky;
+        top: 0;
+      }
+
+      nav ul li:hover {
+        background-color: grey;
+      }
+
+      .brand-logo, .brand-logo img {
+          height: 100%;
+      }
+
+      .nav-wrapper {
+        height: 100%;
+        background-color: black;
+      }
+
+      #cartIcon {
+        position: relative;
+        left: 10px;
+      }
+
+      #cartIconNav {
+        position: relative;
+        margin-right: 5px;
+      }
+
+    //***YOUR CSS GOES HERE***//
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+            <nav>
+            <div class="nav-wrapper">
+              <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
+              src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
+              <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+                <li id="cart"></li>
+              </ul>
+            </div>
+          </nav>
+
+          <ul class="sidenav" id="items">
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+            <li id="navCart"></li>
+          </ul>
+    </header>
+
+    <!-- YOUR HTML GOES HERE, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
+
+    <main>
+    <h1 style="text-align:center;">Template</h1>
+
+    <!-- YOUR HTML GOES HERE AS WELL -->
+
+    </main>
+
+    <!-- YOUR HTML GOES HERE AS WELL, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
+  
+    <footer>
+            <p>COPYRIGHT© 2021 iSAVE, LTD. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+        
+      let cartCount = 0;
+      document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+      document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+
+      //***YOUR JAVASCRIPT GOES HERE***//
+
+    </script>
+  </body>
+</html>
