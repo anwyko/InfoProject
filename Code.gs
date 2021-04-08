@@ -10,6 +10,8 @@ function doGet(e) {
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
   Route.path("template", loadTemplate);
+  Route.path("test1", loadTest1);
+  Route.path("test2", loadTest2);
 
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
@@ -39,7 +41,7 @@ function loadOptions() {
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("DATA");
   var lr = ws.getLastRow()-1;
-  var list2 = ws.getRange(2,1,lr,1).getValues();
+  var list2 = ws.getRange(2,1,lr,3).getValues();
   return list2;
 }
 
@@ -72,9 +74,16 @@ function loadTemplate() {
   return render("template");
 }
 
+function loadTest1() {
+  return render("test1");
+}
+function loadTest2() {
+  return render("test2");
+}
+
 function calculate(request){
  
-  var list3;
+   var list3;
   var index;
   var index2 = [];
   var value = {};
@@ -99,25 +108,26 @@ function calculate(request){
   if(position2!=(-1)){sprice = list3[position2][2];}
   else {sprice="-"} 
 
-  if(request.s == "Yes - major issues"){s = list3[position][3];} else if (request.s == "Yes - minor issues"){s = list3[position][3] * 0.5;}
-  if(request.b == "Yes - major issues"){b = list3[position][4];} else if (request.b == "Yes - minor issues"){b = list3[position][4] * 0.5;}
-  if(request.h == "Not Mint - major wear"){h = list3[position][5];} else if (request.h == "Not Mint - minor wear"){h = list3[position][5] * 0.5;}
-  if(request.t == "Yes - major issues"){t = list3[position][6];} else if (request.t == "Yes - minor issues"){t = list3[position][6] * 0.5;}
-  if(request.fc == "Yes - major issues"){fc = list3[position][8];} else if (request.fc == "Yes - minor issues"){fc = list3[position][8] * 0.5;}
-  if(request.bc == "Yes - major issues"){bc = list3[position][9];} else if (request.bc == "Yes - minor issues"){bc = list3[position][9] * 0.5;}
-  if(request.cp == "Yes - major issues"){cp = list3[position][10];} else if (request.cp == "Yes - minor issues"){cp = list3[position][10] * 0.5;}
+  if(request.s == "Yes - major issues"){s = list3[position][3];} else if (request.s == "Yes - minor issues"){s = list3[position][3]; if(s != '-')s*=0.5;}
+  if(request.b == "Yes - major issues"){b = list3[position][4];} else if (request.b == "Yes - minor issues"){b = list3[position][4]; if(b != '-')b*=0.5;}
+  if(request.h == "Not mint - major wear"){h = list3[position][5];} else if (request.h == "Not mint - minor wear"){h=list3[position][5]; if(h != '-')h*=0.5;}
+  if(request.t == "Yes - major issues"){t = list3[position][6];} else if (request.t == "Yes - minor issues"){t = list3[position][6]; if(t != '-')t*=0.5;}
+  if(request.fc == "Yes - major issues"){fc = list3[position][8];} else if (request.fc == "Yes - minor issues"){fc = list3[position][8]; if(fc != '-')fc*=0.5;}
+  if(request.bc == "Yes - major issues"){bc = list3[position][9];} else if (request.bc == "Yes - minor issues"){bc = list3[position][9]; if(bc != '-')bc*=0.5;}
+  if(request.cp == "Yes - major issues"){cp = list3[position][10];} else if (request.cp == "Yes - minor issues"){cp = list3[position][10]; if(cp != '-')cp*=0.5;}
 
   if(maxbprice=="-" ||s=="-" ||b=="-" ||h=="-" ||t=="-" ||fc=="-" ||bc=="-" ||cp=="-") 
-  {bprice = "No Purchase";}
+  {bprice = "Unable to accept :(";}
   else {bprice = "$" + (maxbprice-s-b-h-t-fc-bc-cp).toFixed(2); bbprice = (maxbprice-s-b-h-t-fc-bc-cp);}
 
-  if(bbprice < 100){bprice="No Purchase";bbprice="No Purchase";} 
+  if(bbprice < 100){bprice="Unable to accept :(";bbprice="Unable to accept :(";} 
 
-  if(sprice!="-" && bprice!="No Purchase") {cdifference = "$" + (sprice-bbprice).toFixed(2);} 
-  else {cdifference = "No Trade";} 
+  // if(sprice!="-" && bprice!="No Purchase") {cdifference = "$" + (sprice-bbprice).toFixed(2);} 
+  // else {cdifference = "No Trade";} 
 
   value.bp = bprice;
-  value.td = cdifference;
+  value.bp2 = bbprice;
+  //value.td = cdifference;
 
   return value;
   

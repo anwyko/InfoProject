@@ -62,7 +62,7 @@
         color: white;
         background-color: black;
         //border: solid gray;
-          box-shadow: 0px 0 10px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
 
       }
 
@@ -144,6 +144,11 @@
         margin: auto;        
       }
 
+      @media screen and (max-width: 600px) {
+        #banner::before {
+          background-size: 130%;
+        }
+
       #cartIcon {
         position: relative;
         left: 10px;
@@ -187,7 +192,6 @@
                 <p id="label">Turn the iPhone you have into the iPhone you want</p>
                 <ul>
                     <li class="inst">Start by telling us a bit about your current iPhone</li>
-                    <li class="inst">Select the brand new iPhone you'd like to upgrade to</li>
                     <li class="inst">Then hit Calculate for a real-time estimate</li>
                 </ul>
             </div>
@@ -259,14 +263,7 @@
                   <option>Yes - major issues</option>
                 </select>
             </div> 
-            <div class="row">
-              <label>Which brand new iPhone would you like to upgrade to?</label><br>
-              <select id="dd" class="browser-default">     
-                  <? for(var i=last2;i < last; i++){ ?>
-                  <option> <?= options[i][0]; ?> </option>      
-                  <? } ?>
-              </select>
-            </div>
+            
                     
             <br>
 
@@ -275,23 +272,20 @@
             <label> Your device is valued at: </label><input disabled type="text" id="bp">
             </div>
             </div>
-            <div class="row">
-            <div class="input-field">
-            <label>Cost to upgrade: </label><input disabled type="text" id="td">
-            </div> 
-            </div>
+
+           
+
             
             <div class="row">
             <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" 
-            name="action">Calculate<i class="material-icons right">send</i></button>
+            name="action">Calculate<i class="material-icons right">calculate</i></button>
               
             </div>
           
             <div class="spacer"></div>
           
             <div class="row">
-            <button id="btn2" class="btn waves-effect waves-light black btn-large" type="submit" 
-            name="action">Add to Cart<i class="material-icons right">shopping_cart</i></button>
+            <a onclick="check()" class="btn waves-effect waves-light black btn-large" style="color: white" href="<?= ScriptApp.getService().getUrl(); ?>?v=test1">VIEW YOUR SAVINGS!<i class="material-icons right">send</i></button></a>
             <br><br><br><br>
             </div> 
             </div>
@@ -325,7 +319,7 @@
 
         function showOptions(list) {
           let currentDevice = document.querySelector("#cd");
-          let desiredDevice = document.querySelector("#dd");
+         // let desiredDevice = document.querySelector("#dd");
           for (let i = 0; i < list.length; i++) { 
               let option = document.createElement("option");
               let option2 = document.createElement("option");
@@ -337,19 +331,22 @@
         }
         //load();
 
-        let cartCount = 0;
-        document.getElementById("btn").addEventListener("click",callcalculator);
-        //document.getElementById("btn2").addEventListener("click",launch);
-        document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-        <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
-        document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-        <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+        if (sessionStorage.getItem("count") === null){
+      sessionStorage.setItem("count", 0);
+    }
+    let count = sessionStorage.getItem("count");
+    
+      document.getElementById("btn").addEventListener("click",callcalculator);
+      document.querySelector("#cart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIcon" class="material-icons left">shopping_cart</i>(${count})</a>`;
+      document.querySelector("#navCart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${count})</a>`;
 
         function callcalculator(){
 
           var request = {};
           request.cd = document.getElementById("cd").value; 
-          request.dd = document.getElementById("dd").value; 
+          //request.dd = document.getElementById("dd").value; 
           request.s = document.getElementById("s").value; 
           request.b = document.getElementById("b").value; 
           request.h = document.getElementById("h").value; 
@@ -357,15 +354,30 @@
           request.fc = document.getElementById("fc").value; 
           request.bc = document.getElementById("bc").value;
           request.cp = document.getElementById("cp").value; 
+          sessionStorage.setItem("device", request.cd);
+       
           google.script.run.withSuccessHandler(report).calculate(request);
         
         }
         
         function report(value){
+
+            
+
             document.getElementById("bp").value = value.bp;
-            document.getElementById("td").value = value.td;
+            //document.getElementById("td").value = value.bp2;
+            sessionStorage.setItem("estimate", value.bp2);
             M.updateTextFields();
         } 
+
+        // let p = sessionStorage.getItem("persist");
+        // console.log(p);
+
+        function check() {
+          if (document.getElementById("bp").value != '' && document.getElementById("bp").value != "Unable to accept :(") {
+            sessionStorage.setItem("persist", true);
+          }
+        }
 
 
     </script> 
