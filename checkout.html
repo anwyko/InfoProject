@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <!-- HEADER AND FOOTER TEMPLATE...-->
+    <!-- HEADER AND FOOTER TEMPLATE (DO NOT EDIT - JUST COPY AND PASTE)-->
     <base target="_top">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -8,7 +9,16 @@
       * {
           box-sizing: border-box;
       }
-    
+
+      body {
+        //border: solid yellow;
+        display: flex;
+        flex-direction: column;
+        //position: relative;
+        justify-content: space-between;
+        height: 100vh;
+        //margin-bottom: 30px;
+      }
 
       footer {
         text-align: center;
@@ -16,6 +26,9 @@
         color: white;
         background-color: black;
         box-shadow: 0px 0 10px rgba(0, 0, 0, 0.7);
+        margin-top: 30px;
+        //position: relative;
+        //height: 10%;
       }
 
       nav {
@@ -29,7 +42,8 @@
       }
 
       .brand-logo, .brand-logo img {
-          height: 95%;
+          
+          height: 100%;
       }
 
       .nav-wrapper {
@@ -47,98 +61,72 @@
         margin-right: 5px;
       }
 
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;        
+        //border: solid black;
+       // position: relative;
+        min-height: max-content;
+        //height: 100%;
+      }
+
+      #head {
+        //border: solid red;
+
+      }
+
+      h4 {
+        margin-bottom: 30px;
+      }
+
+      td, th {
+        text-align: center;
+      }
+
+      
+
+      tfoot {
+        font-weight: bold;
+       font-size: 1.2em;
+      }
+
+      #bn {
+        //margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: black;
+        width: 40%;
+      }
+
+      @media screen and (min-width: 600px) {
+        #bn {
+          width: 20%;
+        } 
+      }
+
+      table {
+        position: relative;
+        max-height: 100%;
+        //border: solid red;
+        overflow-y: auto;
+        margin-bottom: 30px;
+      }
+     
+
     //***YOUR CSS GOES HERE***//
 
     </style>
   </head>
- <style>
- @import url('https://fonts.googleapis.com/css?family=Roboto');
-body{
-    font-family: 'Roboto', sans-serif;
-}
-* {
-    margin: 0;
-    padding: 0;
-}
-i {
-    margin-right: 10px;
-}
-input:focus,
-button:focus,
-.form-control:focus{
-    outline: none;
-    box-shadow: none;
-}
-.form-control:disabled, .form-control[readonly]{
-    background-color: #fff;
-}
-.table tr,
-.table tr td{
-    vertical-align: middle;
-}
-.button-container{
-    display: flex;
-    align-items: center;
-}
-.button-container .form-control{
-    max-width: 80px;
-    text-align: center;
-    display: inline-block;
-    margin: 0px 5px;
-}
-#myTable .form-control{
-    width: auto;
-    display: inline-block;
-}
-.cart-qty-plus,
-.cart-qty-minus{
-    width: 38px;
-    height: 38px;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-}
-.cart-qty-plus:hover,
-.cart-qty-minus:hover{
-    background-color: #C0C0C0;
-    color: #fff;
-}
-.img-prdct{
-    width: 50px;
-    height: 50px;
-    background-color: #C0C0C0;
-    border-radius: 4px;
-}
-.img-prdct img{
-    width: 100%;
-}
-thead tr{
-    background-color: #000000;
-    color: white;
-}
-.img-prdct{
-    width:100px !important;
-    height:100px !important;
-}
-.cart-qty-plus{
-    background-color:#000000;
-    color:white;
-    font-weight: 600;
-}
-.cart-qty-minus{
-    background-color:#000000;
-    color:white;
-    font-weight: 600;
-}
 
-</Style>
   <body>
+    <div id="sec">
     <header>
             <nav>
             <div class="nav-wrapper">
               <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
               src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
-              <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <a href="" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
@@ -156,159 +144,34 @@ thead tr{
           </ul>
     </header>
 
-    
-    <html lang="en" >
- 
-   <head>
-      <meta charset="UTF-8">
-      <title>shopping cart</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-      <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-      <link rel="stylesheet" href="./style.css">
- 
+    <!-- YOUR HTML GOES HERE, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
 
- 
- 
- 
- 
-   </head>
-   
-   <div class="container-fluid mt-5">
-   <h2 class="mb-5 text-center">Shopping Cart</h2>
-   <div class="row justify-content-center">
-      <div class="col-md-8">
-         <div class="table-responsive">
-            <table id="myTable" class="table">
-             <thead>
-                  <tr>
-                     <th>Product</th>
-                     <th>Name</th>
-                     <th>Qty</th>
-                     <th>Price</th>
-                     <th class="text-right">
-                        <span id="amount" class="amount">Amount</span>
-                     </th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>
-                        <div class="product-img">
-                           <div class="img-prdct">
-                              <img src="1.jpg">
-                           </div>
-                        </div>
-                     </td>
-                     <td>
-                        <p>Product One</p>
-                     </td>
-                     <td>
-                        <div class="button-container">
-                           <button class="cart-qty-plus" type="button" value="+">+</button>
-                           <input type="text" name="qty" min="0" class="qty form-control" value="0"/>
-                           <button class="cart-qty-minus" type="button" value="-">-</button>
-                        </div>
-                     </td>
-                     <td>
-                        <input type="text" value="50" class="price form-control" disabled>
-                     </td>
-                     <td align="right">$ <span id="amount" class="amount">0</span>
-                     </td>
-                     <tr>
-   <td>
-      <div class="product-img">
-         <div class="img-prdct">
-            <img src="2.jpg">
-         </div>
-      </div>
-   </td>
-   <td>
-      <p>Product Two</p>
-   </td>
-   <td>
-      <div class="button-container">
-         <button class="cart-qty-plus" type="button" value="+">+</button>
-         <input type="text" name="qty" min="0" class="qty form-control" value="0"/>
-         <button class="cart-qty-minus" type="button" value="-">-</button>
-      </div>
-   </td>
-   <td>
-      <input type="text" value="125" class="price form-control" disabled>
-   </td>
-   <td align="right">$ <span id="amount" class="amount">0</span>
-   </td>
-</tr>
-<tr>
-   <td>
-      <div class="product-img">
-         <div class="img-prdct">
-            <img src="2.jpg">
-         </div>
-      </div>
-   </td>
-   <td>
-      <p>Product Three</p>
-   </td>
-   <td>
-      <div class="button-container">
-         <button class="cart-qty-plus" type="button" value="+">+</button>
-         <input type="text" name="qty" min="0" class="qty form-control" value="0"/>
-         <button class="cart-qty-minus" type="button" value="-">-</button>
-      </div>
-   </td>
-   <td>
-      <input type="text" value="250" class="price form-control" disabled>
-   </td>
-   <td align="right">$ <span id="amount" class="amount">0</span>
-   </td>
-</tr>
-<tr>
-   <td>
-      <div class="product-img">
-         <div class="img-prdct">
-            <img src="2.jpg">
-         </div>
-      </div>
-   </td>
-   <td>
-      <p>Product Four</p>
-   </td>
-   <td>
-      <div class="button-container">
-         <button class="cart-qty-plus" type="button" value="+">+</button>
-         <input type="text" name="qty" min="0" class="qty form-control" value="0"/>
-         <button class="cart-qty-minus" type="button" value="-">-</button>
-      </div>
-   </td>
-   <td>
-      <input type="text" value="300" class="price form-control" disabled>
-   </td>
-   <td align="right">$ <span id="amount" class="amount">0</span>
-   </td>
-</tr>
-                  </tr>
-                  <!---- add more tr  ---------->
-                  
-                  <!---- add more tr  ---------->
-               </tbody>
-               <tfoot>
-                  <tr>
-                     <td colspan="4"></td>
-                     <td align="right">
-                        <strong>TOTAL = $  <span id="total" class="total">0</span>
-                        </strong>
-                     </td>
-                  </tr>
-               </tfoot>
-            </table>
-         </div>
-      </div>
-   </div>
+    <main id="main">
+    <h4 id="head" style="text-align:center;">Order Summary</h4>
+
+    <table>
+           <thead>
+                <tr>
+                   <th>#</th>
+                   <th>Quantity</th>
+                   <th>Desired Device</th>
+                   <th>Traded Device</th>
+                   <th>Storage</th>
+                   <th>Colour</th>
+                   <th>Price</th>
+                </tr>
+                </thead>
+                  <tbody id="summary">
+                                                
+                  </tbody>
+                  <tfoot id="total">
+
+                  </tfoot>
+           </table>
+    <button id="bn" style="visibility: hidden" class="waves-effect waves-light black btn-small">Checkout</button>
+
+    </main>
 </div>
-<!-- YOUR HTML GOES HERE, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
-
-
     <!-- YOUR HTML GOES HERE AS WELL, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
   
     <footer>
@@ -323,66 +186,85 @@ thead tr{
             var instances = M.Sidenav.init(elems);
         });
         
-      let cartCount = 0;
-      document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-      <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
-      document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-      <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+      function updateCount() {
+    if (sessionStorage.getItem("count") === null){
+      sessionStorage.setItem("count", 0);
+    }
+    let count = sessionStorage.getItem("count");
+    
 
-      //***YOUR JAVASCRIPT GOES HERE***//
+      document.querySelector("#cart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIcon" class="material-icons left">shopping_cart</i>(${count})</a>`;
+      document.querySelector("#navCart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${count})</a>`;
+}
+updateCount();
+
+function draw() {
+
+  let cart = JSON.parse(sessionStorage.getItem("cart"));
+  let html = "";
+  let html2 = "";
+  let total = 0;
+  let val = "";
+  let k=0;
+  let i;
+  if (cart.length != 0) {
+  
+      for (i=0;i<cart.length;i++) {
+        while (cart[i].price[k] === "$") 
+                    k++;
+        while (cart[i].price[k] != ".") {
+            val += (cart[i].price[k]);
+            k++;
+        }
+      k=0;
+      val = parseInt(val);
+      console.log(typeof(val));
+      total += cart[i].qty * val;
+      val = "";
+      }
+
+  
+    //console.log(typeof(cart[0].qty));
+    let tmp = "None";
+    let t = document.querySelector("#summary");
+    let f = document.querySelector("#total");
+    let b = document.querySelector("#bn");
+    for (i=0;i<cart.length;i++) {
+        if (cart[i].ndevice)
+          tmp = cart[i].ndevice
+
+        html += `<tr>
+                    <td>${i}</td>
+                    <td>${cart[i].qty}</td>
+                    <td>${cart[i].device} </td>
+                    <td>${tmp}</td>
+                    <td>${cart[i].storage}</td>
+                    <td>${cart[i].color}</td>
+                    <td>${cart[i].price}</td>
+            </tr>`;
+        tmp = "None";
+    }
+    html2 = `<tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total:</td>
+                    <td>$${total}.00</td>
+            </tr>`
+
+    t.innerHTML = html;
+    f.innerHTML = html2;
+    b.style.visibility = "visible";
+  }
+}
+draw();
+
+
 
     </script>
-    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-<script  src="./script.js"></script>
-
-<script>
-  $(document).ready(function(){
-    update_amounts();
-    $('.qty, .price').on('keyup keypress blur change', function(e) {
-        update_amounts();
-    });
-});
-function update_amounts(){
-    var sum = 0.0;
-    $('#myTable > tbody  > tr').each(function() {
-        var qty = $(this).find('.qty').val();
-        var price = $(this).find('.price').val();
-        var amount = (qty*price)
-        sum+=amount;
-        $(this).find('.amount').text(''+amount);
-    });
-    $('.total').text(sum);
-}
-//----------------for quantity-increment-or-decrement-------
-var incrementQty;
-var decrementQty;
-var plusBtn  = $(".cart-qty-plus");
-var minusBtn = $(".cart-qty-minus");
-var incrementQty = plusBtn.click(function() {
-    var $n = $(this)
-    .parent(".button-container")
-    .find(".qty");
-    $n.val(Number($n.val())+1 );
-    update_amounts();
-});
-var decrementQty = minusBtn.click(function() {
-    var $n = $(this)
-    .parent(".button-container")
-    .find(".qty");
-    var QtyVal = Number($n.val());
-    if (QtyVal > 0) {
-        $n.val(QtyVal-1);
-    }
-    update_amounts();
-});
-</script>
-
-
-
-  </body>
-
-</html>
-
   </body>
 </html>

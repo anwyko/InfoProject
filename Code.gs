@@ -10,8 +10,8 @@ function doGet(e) {
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
   Route.path("template", loadTemplate);
-  Route.path("test1", loadTest1);
-  Route.path("test2", loadTest2);
+  // Route.path("test1", loadTest1);
+  // Route.path("test2", loadTest2);
 
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
@@ -74,12 +74,12 @@ function loadTemplate() {
   return render("template");
 }
 
-function loadTest1() {
-  return render("test1");
-}
-function loadTest2() {
-  return render("test2");
-}
+// function loadTest1() {
+//   return render("test1");
+// }
+// function loadTest2() {
+//   return render("test2");
+// }
 
 function calculate(request){
  
