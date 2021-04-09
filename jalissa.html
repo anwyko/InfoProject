@@ -1,202 +1,214 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- HEADER AND FOOTER TEMPLATE (DO NOT EDIT - JUST COPY AND PASTE)-->
-    <base target="_top">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <style>
-      * {
-          box-sizing: border-box;
-      }
+<head>
+	<!-- HEADER AND FOOTER TEMPLATE (DO NOT EDIT - JUST COPY AND PASTE)-->
+	<base target="_top">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-      body {
-        //border: solid red;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100vh;
-      }
+	<style>
+		* {
+			box-sizing: border-box;
+		}
 
-      nav {
-        height:100%
-        position: sticky;
-        top: 0;
-      }
+		body {
+			//border: solid red;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 100vh;
+		}
 
-      nav ul li:hover {
-        background-color: grey;
-      }
+		nav {
+			height: 100% position: sticky;
+			top: 0;
+		}
 
-      .brand-logo, .brand-logo img {
-          height: 100%;
-      }
+		nav ul li:hover {
+			background-color: grey;
+		}
 
-      .nav-wrapper {
-        height: 100%;
-        background-color: black;
-      }
+		.brand-logo,
+		.brand-logo img {
+			height: 100%;
+		}
 
-      #cartIcon {
-        position: relative;
-        left: 10px;
-      }
+		.nav-wrapper {
+			height: 100%;
+			background-color: black;
+		}
 
-      #cartIconNav {
-        position: relative;
-        margin-right: 5px;
-      }
+		#cartIcon {
+			position: relative;
+			left: 10px;
+		}
 
-      main {
-        display: flex;
-        flex-direction: column;
-      }
+		#cartIconNav {
+			position: relative;
+			margin-right: 5px;
+		}
 
-      #head {
-        //border: solid red;
-      }
+		main {
+			display: flex;
+			flex-direction: column;
+		}
 
-      .items {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
+		#head {
+			//border: solid red;
+		}
 
-      .item {
-        position: relative;
-        padding: 20px;
-        flex-basis: 33%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        margin-bottom: 50px;
-      }
+		.items {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+      justify-content: center;
+		}
 
-      @media screen and (min-width: 1000px) {
-        .item {
-          flex-basis: 20%;
-        } 
-      }
+		.item {
+			position: relative;
+			padding: 20px;
+			flex-basis: 33%;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			margin-bottom: 50px;
+      max-width: 250px;
+		}
 
-      article:hover button{
-        visibility: visible;
-      }
+		@media screen and (min-width: 1000px) {
+			.item {
+				flex-basis: 25%;
+        min-width: 200px;
+        max-width: 300px;
+			}
+		}
 
-      .pic {
-        width: 100%;
-      }
+		article:hover button {
+			visibility: visible;
+		}
 
-      article:hover .pic {
-        transition: 0.3s;
-        filter: blur(2px);
-      }
+		.pic {
+			width: 100%;
+			// height: 100%;
+		}
 
-      article {
-        position: relative;
-      }
+		article:hover .pic {
+			transition: 0.3s;
+			filter: blur(2px);
+		}
 
-      .label {
-        margin: auto;
-        margin-top: 5px;
-        margin-left: 0;
-        margin-bottom: 5px;
-      }
+		article {
+			position: relative;
+		}
 
-      .price {
-        margin: auto;
-        margin-top: 5px;
-        margin-left: 0;
-        margin-bottom: 10px;
-        color: red;
-      }
+		.label {
+			margin: auto;
+			margin-top: 5px;
+			margin-left: 0;
+			margin-bottom: 5px;
+		}
 
-      .wrap {
-        position: relative;
-      }
+		.price {
+			margin: auto;
+			margin-top: 5px;
+			margin-left: 0;
+			margin-bottom: 10px;
+			color: red;
+		}
 
-      .specs {
-        width: 100%;
-        position: absolute;
-        top: 46%;
-        margin: auto;
-        background-color: transparent;
-        border: solid black;
-        border-radius: 5px;
-        color: white;
-        visibility: hidden;
-        z-index: 2;
-      }
+		.wrap {
+			position: relative;
+		}
 
-      .atc {
-        background-color: black;
-        border: solid black;
-        border-radius: 5px;
-        color: white;
-        height: 2rem;
-      }
+		.specs {
+			width: 100%;
+			position: absolute;
+			top: 46%;
+			margin: auto;
+			background-color: transparent;
+			border: solid black;
+			border-radius: 5px;
+			color: white;
+			visibility: hidden;
+			z-index: 2;
+		}
 
-      .specs:focus {
-        background-color: black;
-      }
+		.atc {
+			background-color: black;
+			border: solid black;
+			border-radius: 5px;
+			color: white;
+			height: 2rem;
+		}
 
-      footer {
-        text-align: center;
-        font-size: 0.85em;
-        background-color: black;
-        color: white;
-        box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
-      }
+		.specs:focus {
+			background-color: black;
+		}
 
-      #banner::before {
-        background-image: url("https://drive.google.com/uc?export=download&id=1oj37E9Q4Vs6TuXnTHYnxcMzU8lBJkIkA");
-        background-size: 100%;
-        background-position: center top;
-        background-repeat: no-repeat;
-        //background-attachment: fixed;
-        //min-height: 100vh;
-        //min-width: 75vw;
-        content: "";
-        object-fit: cover;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: -2;
-        opacity: 0.2;
-        //top: 10px;
-        margin: auto;        
-      }
+		footer {
+			text-align: center;
+			font-size: 0.85em;
+			background-color: black;
+			color: white;
+			box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
+		}
 
-      @media screen and (max-width: 600px) {
-        #banner::before {
-          background-size: 150%;
-        } 
-      }
+		#banner::before {
+			background-image: url("https://drive.google.com/uc?export=download&id=1oj37E9Q4Vs6TuXnTHYnxcMzU8lBJkIkA");
+			background-size: 100%;
+			background-position: center top;
+			background-repeat: no-repeat;
+			//background-attachment: fixed;
+			//min-height: 100vh;
+			//min-width: 75vw;
+			content: "";
+			object-fit: cover;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			z-index: -2;
+			opacity: 0.2;
+			//top: 10px;
+			margin: auto;
+		}
 
-      #labeltop {
-        font-size: 2rem;
-        font-family: Impact, Charcoal, sans-serif;
-        text-align: center;
-        //position: static;
-      }
+		@media screen and (max-width: 600px) {
+			#banner::before {
+				background-size: 150%;
+			}
+		}
 
-      .inst {
-        font-size: 1.1rem;
-        font-weight: bold;
-        //font-family: Impact, Charcoal, sans-serif;
-        text-align: center;
-      }
+		#labeltop {
+			font-size: 2rem;
+			font-family: Impact, Charcoal, sans-serif;
+			text-align: center;
+			//position: static;
+		}
 
-    </style>
-  </head>
+		.inst {
+			font-size: 1.1rem;
+			font-weight: bold;
+			//font-family: Impact, Charcoal, sans-serif;
+			text-align: center;
+		}
 
-  <body>
+    @media screen and (max-width: 600px) {
+			.btn {
+				font-size: 2vw;
+			}
+		}
 
-    <header>
-            <nav>
-            <div class="nav-wrapper">
-              <a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
+	</style>
+</head>
+
+<body>
+
+	<header>
+    <div class="navbar-fixed">
+		<nav>     
+			<div class="nav-wrapper">
+				<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
               src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
               <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
@@ -207,6 +219,7 @@
               </ul>
             </div>
           </nav>
+          </div>
 
           <ul class="sidenav" id="items">
             <li><a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
@@ -242,13 +255,13 @@
                   <li>Front Camera: 12 MP (Dual)</li>
                   <li>Back Camera: 12 MP (Quad)</li>
                   <li>CPU: Hexa-core (2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)</li>
-                  <li>RAM: 3 GB</li>
+                  <li>RAM: 6 GB</li>
                 </ul>
             <form method="dialog">
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1Sxmgkwr8MigSjOldsnOie4C2ANzZZr9s"> 
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1fSgTGz4653-i9OrqLBRn0wbPsbPbznDG"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12 Pro Max</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -259,8 +272,8 @@
             <form action="#">
               <p>
                 <label>
-                  <input class="colors" name="color" value="Silver" type="radio" checked />
-                  <span>Silver</span>
+                  <input class="colors" name="color" value="Pacific Blue" type="radio" checked />
+                  <span>Pacific Blue</span>
                 </label>
               </p>
               <p>
@@ -274,9 +287,783 @@
             <button onclick="add(0)" class="btn waves-effect waves-light black btn-small">BUY</button>
       </article>
 
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog2.showModal();">View Specs</button>
+            <dialog id="dialog2">
+                <ul>
+                  <li>Screen: Super Retina XDR OLED</li>
+                  <li>Resolution: 1170 x 2532 pixels</li>
+                  <li>Battery: Li-Ion 2815 mAh</li>
+                  <li>Front Camera: 12 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Quad)</li>
+                  <li>CPU: Hexa-core (2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)</li>
+                  <li>RAM: 6 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1s6slCEI2EUE9HsALZmXtZOa2T4WJhYyC"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12 Pro</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+        <option value="512gb">512gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Graphite" type="radio" checked />
+                  <span>Graphite</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" />
+                  <span>Silver</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(1)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog3.showModal();">View Specs</button>
+            <dialog id="dialog3">
+                <ul>
+                  <li>Screen: Super Retina XDR OLED</li>
+                  <li>Resolution: 1284 x 2778 pixels</li>
+                  <li>Battery: Li-Ion 3687 mAh</li>
+                  <li>Front Camera: 12 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core (2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1iRkwMmnIp3vwr22zgHI9hnK2jlE4oY89"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Black" type="radio" checked />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="White" type="radio" />
+                  <span>White</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(2)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog4.showModal();">View Specs</button>
+            <dialog id="dialog4">
+                <ul>
+                  <li>Screen: Super Retina XDR OLED</li>
+                  <li>Resolution: 1080 x 2340 pixels</li>
+                  <li>Battery: Li-Ion 2227 mAh</li>
+                  <li>Front Camera: 12 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Quad)</li>
+                  <li>CPU: Hexa-core (2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1Wky6REB98VOpH9tIbJRGqhM9-_5yKA9f"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12 Mini</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Blue" type="radio" checked />
+                  <span>Blue</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Green" type="radio" />
+                  <span>Green</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(3)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog5.showModal();">View Specs</button>
+            <dialog id="dialog5">
+                <ul>
+                  <li>Screen: Super Retina XDR OLED</li>
+                  <li>Resolution: 1242 x 2688 pixels </li>
+                  <li>Battery:Li-Ion 3969 mAh</li>
+                  <li>Front Camera: 12 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Triple)</li>
+                  <li>CPU: Hexa-core (2x2.65 GHz Lightning + 4x1.8 GHz Thunder)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1O7npPj451nMPnjrZ7004w505dneTH4n4"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 11 Pro Max</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+        <option value="512gb">512gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Gold" type="radio" />
+                  <span>Gold</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(4)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog6.showModal();">View Specs</button>
+            <dialog id="dialog6">
+                <ul>
+                  <li>Screen: Super Retina XDR OLED</li>
+                  <li>Resolution: 1125 x 2436 pixels</li>
+                  <li>Battery: Li-Ion 3046 mAh</li>
+                  <li>Front Camera: 12 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Triple)</li>
+                  <li>CPU: Hexa-core (2x2.65 GHz Lightning + 4x1.8 GHz Thunder)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1A-TR5JtZ1rGy0aa1DJsjkFXiGXACUBzY"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 11 Pro</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+        <option value="512gb">512gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" />
+                  <span>Silver</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(5)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog7.showModal();">View Specs</button>
+            <dialog id="dialog7">
+                <ul>
+                  <li>Screen: Liquid Retina IPS LCD</li>
+                  <li>Resolution: 828 x 1792 pixels</li>
+                  <li>Battery: Li-Ion 3110 mAh</li>
+                  <li>Front Camera: 12 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core (2x2.65 GHz Lightning + 4x1.8 GHz Thunder)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1w3Tt1cKySxmDGQR3xpKg1dFZdtuYQQSJ"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 11</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Black" type="radio" checked />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Purple" type="radio" />
+                  <span>Purple</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(6)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog8.showModal();">View Specs</button>
+            <dialog id="dialog8">
+                <ul>
+                  <li>Screen: Retina IPS LCD</li>
+                  <li>Resolution: 750 x 1334 pixels</li>
+                  <li>Battery: Li-Ion 1821 mAh</li>
+                  <li>Front Camera: 7 MP</li>
+                  <li>Back Camera: 12 MP</li>
+                  <li>CPU: Hexa-core (2x2.65 GHz Lightning + 4x1.8 GHz Thunder)</li>
+                  <li>RAM: 3 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1uDXti_wColRHAqrCr2Z6VLbpG9WcyRJx"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone SE 2020</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Black" type="radio" checked />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="White" type="radio" />
+                  <span>White</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(7)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
 
 
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog9.showModal();">View Specs</button>
+            <dialog id="dialog9">
+                <ul>
+                  <li>Screen: Super Retina OLED</li>
+                  <li>Resolution: 750 x 1334 pixels</li>
+                  <li>Battery: Li-Ion 1821 mAh</li>
+                  <li>Front Camera: 7 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core (2x2.5 GHz Vortex + 4x1.6 GHz Tempest)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1TeOU02pGEOxeIG_P9lmaFCnnnGaLcgtK"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone XS Max</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+        <option value="512gb">512gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" />
+                  <span>Silver</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(8)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog10.showModal();">View Specs</button>
+            <dialog id="dialog10">
+                <ul>
+                  <li>Screen: Super Retina OLED</li>
+                  <li>Resolution: 1125 x 2436 pixels</li>
+                  <li>Battery: Li-Ion 2658 mAh</li>
+                  <li>Front Camera: 7 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core (2x2.5 GHz Vortex + 4x1.6 GHz Tempest)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1R2UOqAUybzZBEHQvx2c094C2e-PkYmdP"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone XS</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+        <option value="512gb">512gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Gold" type="radio" />
+                  <span>Gold</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(9)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog11.showModal();">View Specs</button>
+            <dialog id="dialog11">
+                <ul>
+                  <li>Screen: Super Retina OLED</li>
+                  <li>Resolution: 1125 x 2436 pixels</li>
+                  <li>Battery: Li-Ion 2658 mAh</li>
+                  <li>Front Camera: 7 MP (Dual)</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core (2x2.5 GHz Vortex + 4x1.6 GHz Tempest)</li>
+                  <li>RAM: 4 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1XAOLDqwXr1rbyVVC3Kn7HTPMQI3VAExg"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone XR</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Black" type="radio" checked />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="White" type="radio" />
+                  <span>White</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(10)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog12.showModal();">View Specs</button>
+            <dialog id="dialog12">
+                <ul>
+                  <li>Screen: Super Retina OLED</li>
+                  <li>Resolution: 1125 x 2436 pixels</li>
+                  <li>Battery: Li-Ion 2716 mAh</li>
+                  <li>Front Camera: 7 MP</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core 2.39 GHz (2x Monsoon + 4x Mistral)</li>
+                  <li>RAM: 3 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1KjxF8IVPJ2pnjb8Yacco1PvhMy5XQpMd"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone X</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" />
+                  <span>Silver</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(11)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
       
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog13.showModal();">View Specs</button>
+            <dialog id="dialog13">
+                <ul>
+                  <li>Screen: Retina IPS LCD</li>
+                  <li>Resolution: 1080 x 1920 pixels</li>
+                  <li>Battery: Li-Ion 2691 mAh</li>
+                  <li>Front Camera: 7 MP</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Hexa-core (2x Monsoon + 4x Mistral)</li>
+                  <li>RAM: 3 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1s8Uw0onTg5M501_Nh2DujnXKJoK4IXOS"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 8 Plus</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Red" type="radio" />
+                  <span>Red</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(12)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog14.showModal();">View Specs</button>
+            <dialog id="dialog14">
+                <ul>
+                  <li>Screen: Retina IPS LCD</li>
+                  <li>Resolution: 750 x 1334 pixels</li>
+                  <li>Battery: Li-Ion 1821 mAh</li>
+                  <li>Front Camera: 7 MP</li>
+                  <li>Back Camera: 12 MP</li>
+                  <li>CPU: Hexa-core (2x Monsoon + 4x Mistral)</li>
+                  <li>RAM: 2 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1r8x5iWzGDxSj6SuRgRJROOCZSOVOumPk"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 8</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="64gb">64gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" checked />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" />
+                  <span>Silver</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(13)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog15.showModal();">View Specs</button>
+            <dialog id="dialog15">
+                <ul>
+                  <li>Screen: Retina IPS LCD</li>
+                  <li>Resolution: 1080 x 1920 pixels</li>
+                  <li>Battery: Li-Ion 2900 mAh</li>
+                  <li>Front Camera: 7 MP</li>
+                  <li>Back Camera: 12 MP (Dual)</li>
+                  <li>CPU: Quad-core 2.34 GHz (2x Hurricane + 2x Zephyr)</li>
+                  <li>RAM: 3 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1IN21aqvIX2tLhraX9bcm9yiBtSl65o8y"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 7 Plus</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="32gb">32gb</option>
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Black" type="radio" checked />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Rose Gold" type="radio" />
+                  <span>Rose Gold</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(14)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog16.showModal();">View Specs</button>
+            <dialog id="dialog16">
+                <ul>
+                  <li>Screen: Retina IPS LCD</li>
+                  <li>Resolution: 750 x 1334 pixels</li>
+                  <li>Battery: Li-Ion 1960 mAh</li>
+                  <li>Front Camera: 7 MP</li>
+                  <li>Back Camera: 12 MP</li>
+                  <li>CPU: Quad-core 2.34 GHz (2x Hurricane + 2x Zephyr)</li>
+                  <li>RAM: 2 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1mYtFhVIOU5f0KxdcFTLy4hdDN77Ziy3y"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 7</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="32gb">32gb</option>
+        <option value="128gb">128gb</option>
+        <option value="256gb">256gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Black" type="radio" checked />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Red" type="radio" />
+                  <span>Red</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(15)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog17.showModal();">View Specs</button>
+            <dialog id="dialog17">
+                <ul>
+                  <li>Screen: IPS LCD</li>
+                  <li>Resolution: 1080 x 1920 pixels</li>
+                  <li>Battery: Li-Ion 2750 mAh</li>
+                  <li>Front Camera: 5 MP</li>
+                  <li>Back Camera: 12 MP</li>
+                  <li>CPU: Dual-core 1.84 GHz Twister</li>
+                  <li>RAM: 2 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=163-nlQB7JxQL5SVJSZ9JYyjWbhjz71u-"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 6s Plus</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="16gb">16gb</option>
+        <option value="32gb">32gb</option>
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Rose Gold" type="radio" checked />
+                  <span>Rose Gold</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Space Gray" type="radio" />
+                  <span>Space Gray</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(16)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog18.showModal();">View Specs</button>
+            <dialog id="dialog18">
+                <ul>
+                  <li>Screen: IPS LCD</li>
+                  <li>Resolution: 750 x 1334 pixels</li>
+                  <li>Battery: Li-Ion 1715 mAh</li>
+                  <li>Front Camera: 5 MP</li>
+                  <li>Back Camera: 12 MP</li>
+                  <li>CPU: Dual-core 1.84 GHz Twister</li>
+                  <li>RAM: 2 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1YGqvHnCYVReNhIiIZRkwXpZsHRP6_Xdt"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 6s</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="16gb">16gb</option>
+        <option value="32gb">32gb</option>
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" checked />
+                  <span>Silver</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Gold" type="radio" />
+                  <span>Gold</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(17)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
+      <article class="item">
+            <div class="wrap">               
+            <button  class="specs" onclick="window.dialog19.showModal();">View Specs</button>
+            <dialog id="dialog19">
+                <ul>
+                  <li>Screen: IPS LCD</li>
+                  <li>Resolution: 750 x 1334 pixels</li>
+                  <li>Battery: Li-Ion 1715 mAh</li>
+                  <li>Front Camera: 1.2 MP</li>
+                  <li>Back Camera: 8 MP</li>
+                  <li>CPU: Dual-core 1.4 GHz Typhoon</li>
+                  <li>RAM: 1 GB</li>
+                </ul>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Close</button>
+              </form>
+            </dialog>
+            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1esICsUY9rVbOttOqlbDZjsrsPo4ji72o"> 
+            </div>
+            <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 6</p>
+            <select id="a" onchange="load()" class="browser-default">
+        <option value="16gb">16gb</option>
+        <option value="32gb">32gb</option>
+        <option value="64gb">64gb</option>
+        <option value="128gb">128gb</option>
+      </select>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Gold" type="radio" checked />
+                  <span>Gold</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="colors" name="color" value="Silver" type="radio" />
+                  <span>Silver</span>
+                </label>
+              </p>
+            </form>          
+            <p style="font-weight: bold" class="price"></p>
+            <button onclick="add(18)" class="btn waves-effect waves-light black btn-small">BUY</button>
+      </article>
+
     </div>
 
     </main>

@@ -18,6 +18,7 @@
         justify-content: space-between;
         height: 100vh;
         //margin-bottom: 30px;
+        //overflow-x: hidden;
       }
 
       footer {
@@ -84,7 +85,16 @@
         text-align: center;
       }
 
-      
+
+      @media screen and (max-width: 600px) {
+        td {
+          font-size: 2.5vw;
+        } 
+      }
+
+      .nowrap {
+        white-space: nowrap;
+      }      
 
       tfoot {
         font-weight: bold;
@@ -112,6 +122,23 @@
         overflow-y: auto;
         margin-bottom: 30px;
       }
+
+      .qty:focus, .qty {
+        border: none;
+        background-color: transparent;
+      }
+
+      .adjust, .adjust:focus {
+        font-weight: bold;
+        color: black;
+        border: solid black 2px;
+        border-radius: 4px;
+        background-color: aliceblue;
+      }
+
+      .adjust:active {
+          background-color: transparent;
+      }
      
 
     //***YOUR CSS GOES HERE***//
@@ -122,6 +149,7 @@
   <body>
     <div id="sec">
     <header>
+      <div class="navbar-fixed">
             <nav>
             <div class="nav-wrapper">
               <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
@@ -135,6 +163,7 @@
               </ul>
             </div>
           </nav>
+      </div>
 
           <ul class="sidenav" id="items">
             <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
@@ -147,6 +176,10 @@
     <!-- YOUR HTML GOES HERE, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
 
     <main id="main">
+
+
+
+
     <h4 id="head" style="text-align:center;">Order Summary</h4>
 
     <table>
@@ -170,6 +203,17 @@
            </table>
     <button id="bn" style="visibility: hidden" class="waves-effect waves-light black btn-small">Checkout</button>
 
+    <dialog id="dg">
+      <form method="dialog">
+        <p>Are you sure?<p>
+        <menu>
+          <button name="rv" id="b" value="Yes">Yes</button>
+          <button value="No">No</button>
+        </menu>
+      </form>
+    <dialog>
+        
+
     </main>
 </div>
     <!-- YOUR HTML GOES HERE AS WELL, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
@@ -185,6 +229,25 @@
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
         });
+
+  
+let m = document.querySelector("#main");
+console.log(m.childElementCount);
+m.innerHTML += `
+          <dialog id="dialog2">
+             <p>Are you sure</p>
+             <br>
+            <form method="dialog">
+                <button class="btn waves-effect waves-light black btn-small">Yes</button>
+                <button class="btn waves-effect waves-light black btn-small">No</button>
+              </form>
+   </dialog>`
+
+window.dialog2.showModal();
+
+console.log(m.childElementCount);
+
+
         
       function updateCount() {
     if (sessionStorage.getItem("count") === null){
@@ -209,7 +272,6 @@ function draw() {
   let val = "";
   let k=0;
   let i;
-  if (cart.length != 0) {
   
       for (i=0;i<cart.length;i++) {
         while (cart[i].price[k] === "$") 
@@ -231,13 +293,19 @@ function draw() {
     let t = document.querySelector("#summary");
     let f = document.querySelector("#total");
     let b = document.querySelector("#bn");
+    if(total === 0)
+     b.disabled = true;
     for (i=0;i<cart.length;i++) {
         if (cart[i].ndevice)
           tmp = cart[i].ndevice
 
         html += `<tr>
-                    <td>${i}</td>
-                    <td>${cart[i].qty}</td>
+                    <td>${i+1}</td>
+                    <td class="nowrap">
+                      <button onclick="reduce(${i})" class="adjust">-</button>
+                      <button class="qty">${cart[i].qty}</button>
+                      <button onclick="add(${i})" class="adjust">+</button>
+                    </td>
                     <td>${cart[i].device} </td>
                     <td>${tmp}</td>
                     <td>${cart[i].storage}</td>
@@ -255,13 +323,43 @@ function draw() {
                     <td>Total:</td>
                     <td>$${total}.00</td>
             </tr>`
-
+  // if(i != 0) {
     t.innerHTML = html;
     f.innerHTML = html2;
     b.style.visibility = "visible";
-  }
+//  }
 }
 draw();
+
+function add(i) {
+
+  let e = JSON.parse(sessionStorage.getItem("cart"));
+  e[i].qty += 1;
+  sessionStorage.setItem("cart", JSON.stringify(e));
+  let c = sessionStorage.getItem("count");
+  c++;
+  sessionStorage.setItem("count",c);
+  draw();
+  updateCount();
+}
+
+function reduce(i) {
+  let e = JSON.parse(sessionStorage.getItem("cart"));
+  if (e[i].qty > 1) 
+    e[i].qty -= 1;
+  else {
+    e.splice(i,1);
+    // if (cart.lenght === 0)
+    //   sessionStorage.removeItem("cart");
+  }
+  sessionStorage.setItem("cart", JSON.stringify(e));
+  let c = sessionStorage.getItem("count");
+  c--;
+  sessionStorage.setItem("count",c);
+  draw();
+  updateCount();
+}
+
 
 
 

@@ -72,10 +72,9 @@
 
       #cartIconNav {
         position: relative;
-        margin-right: 5px;
-      }
+        margin-right: -50px;
 
-      //***YOUR CSS GOES HERE***//
+      }
 
     </style>
   </head>
@@ -130,7 +129,7 @@
         document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
         <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
         document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-        <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+        <i id="cartIconNav" class="material-icons">shopping_cart</i>(${cartCount})</a>`;
 
         //***YOUR JAVASCRIPT GOES HERE***//
 

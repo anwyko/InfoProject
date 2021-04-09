@@ -123,6 +123,10 @@
         //position: relative;
       }
 
+      label {
+        color:black;
+      }
+
       #banner::before {
         //border: solid red;
         background-image: url("https://drive.google.com/uc?export=download&id=1yGkf-q0ix2b2WpdPB9sP5iO4ojxyg4za");
@@ -148,23 +152,28 @@
         #banner::before {
           background-size: 130%;
         }
+      }
 
       #cartIcon {
-        //position: relative;
-        //left: 50px;
-        //text-align: center;
+        position: relative;
+        left: 10px;
       }
 
       #cartIconNav {
-       // position: relative;
-        //margin-right: 50px;
-        //text-align: center;
+       position: relative;
+        margin-right: 5px;
       }
+
+      .btn {
+        font-size: 100%;
+      }
+      
     </style>
   </head>
 
   <body>
       <header>
+        <div class="navbar-fixed">
             <nav>
             <div class="nav-wrapper">
               <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
@@ -178,6 +187,7 @@
               </ul>
             </div>
           </nav>
+        </div>
 
           <ul class="sidenav" id="items">
             <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
@@ -278,14 +288,14 @@
             
             <div class="row">
             <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" 
-            name="action">Calculate<i class="material-icons right">calculate</i></button>
+            name="action">Calculate<i class="material-icons right">functions</i></button>
               
             </div>
           
             <div class="spacer"></div>
           
             <div class="row">
-            <a onclick="check()" class="btn waves-effect waves-light black btn-large" style="color: white" href="<?= ScriptApp.getService().getUrl(); ?>?v=index">VIEW YOUR SAVINGS<i class="material-icons right">send</i></button></a>
+            <a onclick="check()" class="btn waves-effect waves-light black btn-large" style="color: white" href="<?= ScriptApp.getService().getUrl(); ?>?v=index">VIEW YOUR SAVINGS!<i class="material-icons right">paid</i></button></a>
             <br><br><br><br>
             </div> 
             </div>
@@ -370,8 +380,6 @@
             M.updateTextFields();
         } 
 
-        // let p = sessionStorage.getItem("persist");
-        // console.log(p);
 
         function check() {
           if (document.getElementById("bp").value != '' && document.getElementById("bp").value != "Unable to accept :(") {
