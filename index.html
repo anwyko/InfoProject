@@ -6,7 +6,7 @@
 	<base target="_top">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <meta name='color-scheme' content='dark'>
+  <meta name='color-scheme' content='light'>
 
 	<style>
 		* {
@@ -195,6 +195,10 @@
 			text-align: center;
 		}
 
+    #here:active {
+      color: purple;
+    }
+
 	</style>
 </head>
 
@@ -233,7 +237,7 @@
                 <p id="labeltop">Welcome to iSave!</p>
                 <ul id="intro">
                     <li class="inst">Your one-stop-shop for the lastest iPhones</li>
-                    <li class="inst">Click <span><a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">HERE</a></span> to trade in your used iPhone and save big! </li>
+                    <li class="inst">Click <span><a id="here" onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">HERE</a></span> to trade in your used iPhone and save big! </li>
                 </ul>
             </div>
 
