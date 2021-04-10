@@ -26,6 +26,9 @@ function include(filename) {
 }
 
 function render(page, data) {
+  // var output = HtmlService.createHtmlOutput('<b>Hello, world!</b>');
+  // output.addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  // var tmp = output.asTemplate();
   var tmp = HtmlService.createTemplateFromFile(page);
   if(data) {
     var keys = Object.keys(data);

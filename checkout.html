@@ -206,16 +206,6 @@
                   </tfoot>
            </table>
     <button id="bn" style="visibility: hidden" class="waves-effect waves-light black btn-small">Checkout</button>
-
-    <dialog id="dg">
-      <form method="dialog">
-        <p>Are you sure?<p>
-        <menu>
-          <button name="rv" id="b" value="Yes">Yes</button>
-          <button value="No">No</button>
-        </menu>
-      </form>
-    <dialog>
         
 
     </main>
@@ -237,7 +227,6 @@
   
 function createAddDia(i) {
     let m = document.querySelector("#main");
-    console.log(m.childElementCount);
     m.innerHTML += `
               <dialog id="dialog2">
                 <p>Are you sure?</p>
@@ -248,12 +237,10 @@ function createAddDia(i) {
                   </form>
       </dialog>`
     window.dialog2.showModal();
-    console.log(m.childElementCount);
 }
 
 function createSubDia(i) {
     let m = document.querySelector("#main");
-    console.log(m.childElementCount);
     m.innerHTML += `
               <dialog id="dialog2">
                 <p>Are you sure?</p>
@@ -291,16 +278,29 @@ updateCount();
 
 function draw() {
 
-  let cart = JSON.parse(sessionStorage.getItem("cart"));
+  
   let html = "";
   let html2 = "";
   let total = 0;
   let val = "";
   let k=0;
   let i;
+  let sign='';
+
+  let t = document.querySelector("#summary");
+  let f = document.querySelector("#total");
+  let b = document.querySelector("#bn");
   
+  if (sessionStorage.getItem("cart") != null){
+
+      let cart = JSON.parse(sessionStorage.getItem("cart"));
       for (i=0;i<cart.length;i++) {
-        while (cart[i].price[k] === "$") 
+        if (cart[i].price[k] === "-") {
+                    k++;
+                    sign=-1;
+        }
+        else sign = 1;
+        if (cart[i].price[k] === "$") 
                     k++;
         while (cart[i].price[k] != ".") {
             val += (cart[i].price[k]);
@@ -308,36 +308,26 @@ function draw() {
         }
       k=0;
       val = parseInt(val);
-      total += cart[i].qty * val;
+      console.log(typeof(val));
+      total += cart[i].qty * val * sign;
       val = "";
       }
+
+      if (total < 0) {
+        sign = '-';
+        total *= -1;
+        }
+      else sign = '';
 
   
     //console.log(typeof(cart[0].qty));
     let tmp = "None";
-    let t = document.querySelector("#summary");
-    let f = document.querySelector("#total");
-    let b = document.querySelector("#bn");
-    if(total === 0)
-     b.disabled = true;
+    
+    
     for (i=0;i<cart.length;i++) {
-        k=0;
         if (cart[i].ndevice)
           tmp = cart[i].ndevice
-
-          // let num = "";
-          // let sign = '';
-        //   while (cart[i].price[k] === "$" || cart[i].price[k] === "-") 
-        //             k++;
-        // while (cart[i].price[k] != ".") {
-        //     num += (cart[i].price[k]);
-        //     k++;
-        // }
-        // num = parseInt(num);
-        // if (num < 0) {
-        //   sign = '-';
-        //   num *= -1;
-        // }
+          
 
         html += `<tr>
                     <td>${i+1}</td>
@@ -350,10 +340,11 @@ function draw() {
                     <td>${tmp}</td>
                     <td>${cart[i].storage}</td>
                     <td>${cart[i].color}</td>
-                    <td>${cart[i].price}.00</td>
+                    <td>${cart[i].price}</td>
             </tr>`;
         tmp = "None";
     }
+  }
     html2 = `<tr>
                     <td></td>
                     <td></td>
@@ -361,9 +352,11 @@ function draw() {
                     <td></td>
                     <td></td>
                     <td>Total:</td>
-                    <td>$${total}.00</td>
+                    <td>${sign}$${total}.00</td>
             </tr>`
 
+    if(total === 0)
+     b.disabled = true;
     t.innerHTML = html;
     f.innerHTML = html2;
     b.style.visibility = "visible";
