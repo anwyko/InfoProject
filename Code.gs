@@ -9,7 +9,7 @@ function doGet(e) {
   Route.path("estimator", loadEstimator);
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
-  Route.path("template", loadTemplate);
+  Route.path("form", loadForm);
   Route.path("jalissa", loadJalissa);
   Route.path("mithra", loadMithra);
 
@@ -73,8 +73,8 @@ function loadAbout() {
   return render("about");
 }
 
-function loadTemplate() {
-  return render("template");
+function loadForm() {
+  return render("form");
 }
 
 function loadJalissa() {
@@ -135,3 +135,21 @@ function calculate(request){
   return value;
   
 } 
+
+function write(request) {
+
+    var ss = SpreadsheetApp.openByUrl(url);
+    var ws = ss.getSheetByName("REQUESTS");
+    var obj = [];
+    var i=0, j=0;
+    for (;i<5;i++) {
+      obj[j] = request[0][i];
+      j++;
+    }
+    for (i=0;i<request[1].length;i++) {
+      obj[j] = request[1][i];
+      j++;
+    }
+    ws.appendRow(obj);
+
+}

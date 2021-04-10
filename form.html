@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- HEADER AND FOOTER TEMPLATE (DO NOT EDIT - JUST COPY AND PASTE)-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width,initial scale=1.0">
+    <base target="_top">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+      * {
+			box-sizing: border-box;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 100vh;
+		}
+
+		nav {
+			height: 100% position: sticky;
+			top: 0;
+		}
+
+		nav ul li:hover {
+			background-color: grey;
+		}
+
+		.brand-logo,
+		.brand-logo img {
+			height: 100%;
+		}
+
+		.nav-wrapper {
+			height: 100%;
+			background-color: black;
+		}
+
+		#cartIcon {
+			position: relative;
+			left: 10px;
+		}
+
+		#cartIconNav {
+			position: relative;
+			margin-right: 5px;
+		}
+
+		main {
+			display: flex;
+			flex-direction: column;
+		}
+
+
+		footer {
+			text-align: center;
+			font-size: 0.85em;
+			background-color: black;
+			color: white;
+			box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
+		}
+
+		.inst {
+			//font-size: 1.1rem;
+			font-weight: bold;
+			//font-family: Impact, Charcoal, sans-serif;
+			text-align: center;
+      margin-bottom: 50px;
+		}
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="navbar-fixed">
+            <nav>
+            <div class="nav-wrapper">
+              <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
+              src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
+              <a href="" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+                <li id="cart"></li>
+              </ul>
+            </div>
+          </nav>
+      </div>
+
+          <ul class="sidenav" id="items">
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+            <li id="navCart"></li>
+          </ul>
+    </header>
+
+    <!-- YOUR HTML GOES HERE, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
+
+    <main>
+      <h3 id="labeltop" style="text-align:center;">Checkout</h3>
+      <p class="inst" style="text-align:center">Please complete the following form</p>
+      <div style="max-width:700px" class="container">
+        <form id="form">
+          <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input name="fn" id="fn" type="text" required class="validate">
+                <label for="fn">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input name="ln" id="ln" type="text" required class="validate">
+                <label for="ln">Last Name</label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">phone</i>
+                <input name="contact" id="icon_telephone" type="tel" class="validate" required
+                  placeholder="123-4567">
+                <label for="icon_telephone">Telephone</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">contact_mail</i>
+                <input name="email" id="icon_email" required type="email" class="validate">
+                <label for="icon_email">Email</label>
+                <span class="helper-text" data-error="Invalid Email"></span>
+              </div>
+            </div>
+            <div class="row">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="message" style="height:150px" name="message" cols="50" ></textarea>
+                <label for="icon_prefix2">Special Requests</label>
+              </div>
+            </div>
+            <div class="center">
+              <button class="waves-effect waves-light black btn-large" type="submit" name = "submit"
+              style="position:center">Submit<i class="material-icons right">send</i></button>
+            </div>  
+          </form>
+        </form>
+      </div>
+
+      <dialog id="dialog">
+          <h5>Order Received!</h5>
+          <br>
+          <p>We'll contact you within 24 hours to set up an appointment.</p>
+          <p>Thank you for choosing iSave and have a great day!</p>
+          <br>
+          <br>
+          <form method="dialog">
+              <button onclick="index()" class="btn waves-effect waves-light black btn-small">Close</button>
+          </form>
+      </dialog>`
+      
+    </main>
+
+    <!-- YOUR HTML GOES HERE AS WELL, BUT ADJUST GRID LAYOUT CSS FOR THE BODY ELEMENT TO MATCH THE NUMBER OF ROWS/COLUMNS ELEMENTS IN BODY -->
+  
+    <footer>
+            <p>COPYRIGHT© 2021 iSAVE, LTD. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+        
+function updateCount() {
+    if (sessionStorage.getItem("count") === null){
+      sessionStorage.setItem("count", 0);
+    }
+    let count = sessionStorage.getItem("count");
+    
+
+      document.querySelector("#cart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIcon" class="material-icons left">shopping_cart</i>(${count})</a>`;
+      document.querySelector("#navCart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${count})</a>`;
+}
+updateCount();
+
+
+function submit(event){
+
+ event.preventDefault();    
+ const myForm = event.target;
+ const formData = new FormData(form);
+ const data = Object.fromEntries(formData);
+ const info = [data.fn, data.ln, data.contact, data.email, data.message];
+ console.log(info);
+ const cart = JSON.parse(sessionStorage.getItem("cart"));
+ const obj = [info, cart];
+ google.script.run.write(obj);
+ window.dialog.showModal();
+
+}
+
+function index() {
+window.open("<?= ScriptApp.getService().getUrl(); ?>?v=index", "_top");
+}
+  
+document.forms['form'].addEventListener('submit', submit);
+
+      //***YOUR JAVASCRIPT GOES HERE***//
+
+    </script>
+  </body>
+</html>
