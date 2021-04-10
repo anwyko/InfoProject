@@ -126,18 +126,22 @@
       .qty:focus, .qty {
         border: none;
         background-color: transparent;
+        //vertical-align: middle;
       }
 
       .adjust, .adjust:focus {
-        font-weight: bold;
-        color: black;
-        border: solid black 2px;
-        border-radius: 4px;
-        background-color: aliceblue;
+        border: none;
+        background-color: transparent;
+        font-size: 2em;
+        vertical-align: middle;
+        /* padding-bottom: 4px;
+        padding-left: -2px;
+        padding-right: -2px; */
+        //width: 5px;
       }
 
       .adjust:active {
-          background-color: transparent;
+          color: gray;
       }
      
 
@@ -231,25 +235,47 @@
         });
 
   
-let m = document.querySelector("#main");
-console.log(m.childElementCount);
-m.innerHTML += `
-          <dialog id="dialog2">
-             <p>Are you sure</p>
-             <br>
-            <form method="dialog">
-                <button class="btn waves-effect waves-light black btn-small">Yes</button>
-                <button class="btn waves-effect waves-light black btn-small">No</button>
-              </form>
-   </dialog>`
+function createAddDia(i) {
+    let m = document.querySelector("#main");
+    console.log(m.childElementCount);
+    m.innerHTML += `
+              <dialog id="dialog2">
+                <p>Are you sure?</p>
+                <br>
+                <form method="dialog">
+                    <button onclick="add(${i})" class="btn waves-effect waves-light black btn-small">Yes</button>
+                    <button onclick="deleteDia()" class="btn waves-effect waves-light black btn-small">No</button>
+                  </form>
+      </dialog>`
+    window.dialog2.showModal();
+    console.log(m.childElementCount);
+}
 
-window.dialog2.showModal();
+function createSubDia(i) {
+    let m = document.querySelector("#main");
+    console.log(m.childElementCount);
+    m.innerHTML += `
+              <dialog id="dialog2">
+                <p>Are you sure?</p>
+                <br>
+                <form method="dialog">
+                    <button onclick="reduce(${i})" class="btn waves-effect waves-light black btn-small">Yes</button>
+                    <button onclick="deleteDia()" class="btn waves-effect waves-light black btn-small">No</button>
+                  </form>
+      </dialog>`
+    window.dialog2.showModal();
+    console.log(m.childElementCount);
+}
 
-console.log(m.childElementCount);
+function deleteDia() {
+    document.querySelector("#dialog2").remove();
+    let m = document.querySelector("#main");
+    console.log(m.childElementCount);
+}
 
 
         
-      function updateCount() {
+function updateCount() {
     if (sessionStorage.getItem("count") === null){
       sessionStorage.setItem("count", 0);
     }
@@ -282,7 +308,6 @@ function draw() {
         }
       k=0;
       val = parseInt(val);
-      console.log(typeof(val));
       total += cart[i].qty * val;
       val = "";
       }
@@ -296,21 +321,36 @@ function draw() {
     if(total === 0)
      b.disabled = true;
     for (i=0;i<cart.length;i++) {
+        k=0;
         if (cart[i].ndevice)
           tmp = cart[i].ndevice
+
+          // let num = "";
+          // let sign = '';
+        //   while (cart[i].price[k] === "$" || cart[i].price[k] === "-") 
+        //             k++;
+        // while (cart[i].price[k] != ".") {
+        //     num += (cart[i].price[k]);
+        //     k++;
+        // }
+        // num = parseInt(num);
+        // if (num < 0) {
+        //   sign = '-';
+        //   num *= -1;
+        // }
 
         html += `<tr>
                     <td>${i+1}</td>
                     <td class="nowrap">
-                      <button onclick="reduce(${i})" class="adjust">-</button>
+                      <button onclick="createSubDia(${i})" class="adjust"><i class="material-icons">remove_circle</i></button>
                       <button class="qty">${cart[i].qty}</button>
-                      <button onclick="add(${i})" class="adjust">+</button>
+                      <button onclick="createAddDia(${i})" class="adjust"><i class="material-icons">add_circle</i></button>
                     </td>
                     <td>${cart[i].device} </td>
                     <td>${tmp}</td>
                     <td>${cart[i].storage}</td>
                     <td>${cart[i].color}</td>
-                    <td>${cart[i].price}</td>
+                    <td>${cart[i].price}.00</td>
             </tr>`;
         tmp = "None";
     }
@@ -323,11 +363,11 @@ function draw() {
                     <td>Total:</td>
                     <td>$${total}.00</td>
             </tr>`
-  // if(i != 0) {
+
     t.innerHTML = html;
     f.innerHTML = html2;
     b.style.visibility = "visible";
-//  }
+
 }
 draw();
 
@@ -341,6 +381,7 @@ function add(i) {
   sessionStorage.setItem("count",c);
   draw();
   updateCount();
+  deleteDia()
 }
 
 function reduce(i) {
@@ -358,10 +399,8 @@ function reduce(i) {
   sessionStorage.setItem("count",c);
   draw();
   updateCount();
+  deleteDia()
 }
-
-
-
 
     </script>
   </body>
