@@ -20,7 +20,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			height: 100vh;
+			//height: 100vh;
 		}
 
 		nav {
@@ -74,6 +74,42 @@
       margin-bottom: 50px;
 		}
 
+    dialog {
+      display: none;
+    }
+
+     .mod {
+      position: fixed;
+      border: solid black;
+      border-radius: 10px;
+      background-color: white;
+      width: fit-content;
+      height: fit-content;
+      max-width: 40vw;
+      min-width: 250px;
+      top:50%; 
+      transform:translateY(-50%);
+      align-self: center;
+      z-index: 5;
+      opacity: 1;
+      box-shadow: 0px 0px 11px -2px rgba(0,0,0,0.7);
+    }
+
+    @media screen and (max-width: 750px) {
+        .mod {
+          max-width: 70vw;
+        } 
+      }
+
+    .back {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: gray;
+      opacity: 0.1;
+      z-index: 4;
+    }
+
     </style>
   </head>
 
@@ -107,7 +143,7 @@
 
     <main>
       <h3 id="labeltop" style="text-align:center;">Checkout</h3>
-      <div class="container"> <p class="inst" style="text-align:center">Please provide the following information to complete your order</p><div>
+      <div class="container"> <p class="inst" style="text-align:center">Please provide the following information to complete your order and we'll contact you</p><div>
       <div style="max-width:700px" class="container">
         <form id="form">
           <div class="row">
@@ -143,7 +179,7 @@
           <form method="dialog">
               <button onclick="index()" class="btn waves-effect waves-light black btn-small">Close</button>
           </form>
-      </dialog>`
+      </dialog>
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">contact_mail</i>
@@ -210,11 +246,12 @@ function submit(event){
  const cart = JSON.parse(sessionStorage.getItem("cart"));
  const obj = [info, cart];
  google.script.run.write(obj);
- window.dialog.showModal();
+ show();
 
 }
 
 function index() {
+  discard();
   clr();
   window.open("<?= ScriptApp.getService().getUrl(); ?>?v=index", "_top");
 }
@@ -222,6 +259,28 @@ function index() {
 function clr() {
   sessionStorage.clear();
   updateCount();
+}
+
+function show() {
+  document.querySelector("main").innerHTML +=  `<div class="back">
+        </div>
+        <div style="padding: 10px; flex-direction: column" class="mod">
+              <h5 style="text-align: center">Order Received!</h5>   
+              <br> 
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">We'll contact you within 24 hours to set up an appointment.</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">Thank you for choosing iSave and have a great day!</p>
+              <br>
+              <div style="display: flex">
+              <button onclick="index()" class="waves-effect waves-light black btn-small" style="max-width: 120px; margin: auto; width: 40%">Close</button>
+              </div>
+              
+              </div>
+           </div>`
+}
+
+function discard() {
+  document.querySelector(".back").remove();
+  document.querySelector(".mod").remove();
 }
   
 document.forms['form'].addEventListener('submit', submit);
