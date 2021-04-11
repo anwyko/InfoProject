@@ -16,7 +16,7 @@ function doGet(e) {
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
   } else {
-    return render("testmenu");
+    return render("index");
   }
 }
 
@@ -36,8 +36,8 @@ function render(page, data) {
       tmp[key] = data[key];
     });
   }
-  //return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-  return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  //return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1').addMetaTag('apple-mobile-web-app-capable', 'yes');
 }
 
 function loadOptions() {
@@ -113,7 +113,7 @@ function calculate(request){
 
   if(request.s == "Yes - major issues"){s = list3[position][3];} else if (request.s == "Yes - minor issues"){s = list3[position][3]; if(s != '-')s*=0.5;}
   if(request.b == "Yes - major issues"){b = list3[position][4];} else if (request.b == "Yes - minor issues"){b = list3[position][4]; if(b != '-')b*=0.5;}
-  if(request.h == "Not mint - major wear"){h = list3[position][5];} else if (request.h == "Not mint - minor wear"){h=list3[position][5]; if(h != '-')h*=0.5;}
+  if(request.h == "Not mint - major wear"){h = list3[position][5];} else if (request.h == "Not mint - minor wear"){h=300; if(h != '-')h*=0.5;}
   if(request.t == "Yes - major issues"){t = list3[position][6];} else if (request.t == "Yes - minor issues"){t = list3[position][6]; if(t != '-')t*=0.5;}
   if(request.fc == "Yes - major issues"){fc = list3[position][8];} else if (request.fc == "Yes - minor issues"){fc = list3[position][8]; if(fc != '-')fc*=0.5;}
   if(request.bc == "Yes - major issues"){bc = list3[position][9];} else if (request.bc == "Yes - minor issues"){bc = list3[position][9]; if(bc != '-')bc*=0.5;}
@@ -123,7 +123,7 @@ function calculate(request){
   {bprice = "Unable to accept :(";}
   else {bprice = "$" + (maxbprice-s-b-h-t-fc-bc-cp).toFixed(2); bbprice = (maxbprice-s-b-h-t-fc-bc-cp);}
 
-  if(bbprice < 100){bprice="Unable to accept :(";bbprice="Unable to accept :(";} 
+  if(bbprice < 100){bprice="Too many issues.";bbprice="Too many issues.";} 
 
   // if(sprice!="-" && bprice!="No Purchase") {cdifference = "$" + (sprice-bbprice).toFixed(2);} 
   // else {cdifference = "No Trade";} 

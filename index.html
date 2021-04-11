@@ -18,7 +18,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			height: 100vh;
+			//height: 100vh;
 		}
 
 		nav {
@@ -157,7 +157,8 @@
 		}
 
 		#banner::before {
-			background-image: url("https://drive.google.com/uc?export=download&id=1oj37E9Q4Vs6TuXnTHYnxcMzU8lBJkIkA");
+			//background-image: url("https://drive.google.com/uc?export=download&id=1oj37E9Q4Vs6TuXnTHYnxcMzU8lBJkIkA");
+      background-image: url("https://i.imgur.com/xPX9uJT.jpg");
 			background-size: 100%;
 			background-position: center top;
 			background-repeat: no-repeat;
@@ -199,6 +200,42 @@
       color: purple;
     }
 
+    dialog {
+      display: none;
+    }
+
+    .mod {
+      position: fixed;
+      border: solid black;
+      border-radius: 10px;
+      background-color: white;
+      width: fit-content;
+      height: fit-content;
+      max-width: 40vw;
+      min-width: 250px;
+      top:50%; 
+      transform:translateY(-50%);
+      align-self: center;
+      z-index: 5;
+      opacity: 1;
+      box-shadow: 0px 0px 11px -2px rgba(0,0,0,0.7);
+    }
+
+    @media screen and (max-width: 750px) {
+        .mod {
+          max-width: 70vw;
+        } 
+      }
+
+    .back {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: gray;
+      opacity: 0.1;
+      z-index: 4;
+    }
+
 	</style>
 </head>
 
@@ -209,7 +246,7 @@
 		<nav>     
 			<div class="nav-wrapper">
 				<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
-              src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
+              src="https://i.imgur.com/WkcY6XS.png"></a>
               <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
@@ -230,7 +267,7 @@
     </header>
     
 
-    <main>
+    <main id="main">
 
       
     <div id="banner" class="section">
@@ -247,7 +284,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog1.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(0)">View Specs</button>
             <dialog id="dialog1">
                 <ul>
                   <li>Screen: Super Retina XDR OLED</li>
@@ -262,7 +299,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1e3ZxJ4FR43dAKr6eknxlpgLWAI9anLTE"> 
+            <img  class="pic" src="https://i.imgur.com/9tBVn2z.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12 Pro Max</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -290,7 +327,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button style="color:gray" class="specs" onclick="window.dialog2.showModal();">View Specs</button>
+            <button style="color:gray" class="specs" onclick="showSpecs(1)">View Specs</button>
             <dialog id="dialog2">
                 <ul>
                   <li>Screen: Super Retina XDR OLED</li>
@@ -305,7 +342,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1ktc3fki-eElM5AODUcjzolcVFQNmCxic"> 
+            <img  class="pic" src="https://i.imgur.com/yFcHXOl.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12 Pro</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -333,7 +370,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog3.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(2)">View Specs</button>
             <dialog id="dialog3">
                 <ul>
                   <li>Screen: Super Retina XDR OLED</li>
@@ -348,7 +385,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1MbLnPZj9AbRW6PeabCBuUZgmo6EdfnUy"> 
+            <img  class="pic" src="https://i.imgur.com/19Yg2AK.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -376,7 +413,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog4.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(3)">View Specs</button>
             <dialog id="dialog4">
                 <ul>
                   <li>Screen: Super Retina XDR OLED</li>
@@ -391,7 +428,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1jNkOsWx_zMu0DR8YPNjNxtNvOeLaFjYq"> 
+            <img  class="pic" src="https://i.imgur.com/LXDtBa3.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 12 Mini</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -419,7 +456,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog5.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(4)">View Specs</button>
             <dialog id="dialog5">
                 <ul>
                   <li>Screen: Super Retina XDR OLED</li>
@@ -434,7 +471,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1jR-qJ_QrNiw-ypyk7jW6qjOi95TvQXiL"> 
+            <img  class="pic" src="https://i.imgur.com/bkHls3g.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 11 Pro Max</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -462,7 +499,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog6.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(5)">View Specs</button>
             <dialog id="dialog6">
                 <ul>
                   <li>Screen: Super Retina XDR OLED</li>
@@ -477,7 +514,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1BrKl-LphFCMeaOxL25309TjDtATJoybz"> 
+            <img  class="pic" src="https://i.imgur.com/y1wC4Qb.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 11 Pro</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -505,7 +542,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog7.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(6)">View Specs</button>
             <dialog id="dialog7">
                 <ul>
                   <li>Screen: Liquid Retina IPS LCD</li>
@@ -520,7 +557,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1gMEUNqUx1GRoZxluKIDodmm9JfJYlp_f"> 
+            <img  class="pic" src="https://i.imgur.com/eyH5vZJ.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 11</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -548,7 +585,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog8.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(7)">View Specs</button>
             <dialog id="dialog8">
                 <ul>
                   <li>Screen: Retina IPS LCD</li>
@@ -563,7 +600,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=16M3-Y__QsNP6f9A_ufKcRbCzAYpN8Mhv"> 
+            <img  class="pic" src="https://i.imgur.com/8iXjU0I.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone SE 2020</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -593,7 +630,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog9.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(8)">View Specs</button>
             <dialog id="dialog9">
                 <ul>
                   <li>Screen: Super Retina OLED</li>
@@ -608,7 +645,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1P2mF8DdvOvdXXsTSby6B4s1K9nRA9iCQ"> 
+            <img  class="pic" src="https://i.imgur.com/KHh8ZCw.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone XS Max</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -638,7 +675,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog10.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(9)">View Specs</button>
             <dialog id="dialog10">
                 <ul>
                   <li>Screen: Super Retina OLED</li>
@@ -653,7 +690,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=15egTeQblOsEoe1JFv3wmhs6E6ryGFv5-"> 
+            <img  class="pic" src="https://i.imgur.com/V0WZUnd.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone XS</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -681,7 +718,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog11.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(10)">View Specs</button>
             <dialog id="dialog11">
                 <ul>
                   <li>Screen: Super Retina OLED</li>
@@ -696,7 +733,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1DqbUsqritV7uxbNfjvUWVIbtQcu13iu8"> 
+            <img  class="pic" src="https://i.imgur.com/QERLNRe.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone XR</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -723,7 +760,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog12.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(11)">View Specs</button>
             <dialog id="dialog12">
                 <ul>
                   <li>Screen: Super Retina OLED</li>
@@ -738,7 +775,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1o4OmgZmGaQFO_qbBIXRYuyw1oow5R0Zt"> 
+            <img  class="pic" src="https://i.imgur.com/fHCqmPC.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone X</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -765,7 +802,7 @@
       
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog13.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(12)">View Specs</button>
             <dialog id="dialog13">
                 <ul>
                   <li>Screen: Retina IPS LCD</li>
@@ -780,7 +817,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1Xm5CCtMZGyWdnT5dikjPiZAAFdwOP8IZ"> 
+            <img  class="pic" src="https://i.imgur.com/GTdU6GZ.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 8 Plus</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -807,7 +844,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog14.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(13)">View Specs</button>
             <dialog id="dialog14">
                 <ul>
                   <li>Screen: Retina IPS LCD</li>
@@ -822,7 +859,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1N7aaD4mrkIM8qLQFXfiLsAEkMPYcPku5"> 
+            <img  class="pic" src="https://i.imgur.com/nzvNP5x.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 8</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -849,7 +886,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog15.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(14)">View Specs</button>
             <dialog id="dialog15">
                 <ul>
                   <li>Screen: Retina IPS LCD</li>
@@ -864,7 +901,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1AsGF_zNUEsLGk4EnfwTltDV-IH15PjAo"> 
+            <img  class="pic" src="https://i.imgur.com/raMSLFi.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 7 Plus</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -892,7 +929,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog16.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(15)">View Specs</button>
             <dialog id="dialog16">
                 <ul>
                   <li>Screen: Retina IPS LCD</li>
@@ -907,7 +944,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1FoLD7cro8hv3Y0LDLGJuVQA3rv94zePp"> 
+            <img  class="pic" src="https://i.imgur.com/sYZyZ0i.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 7</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -935,7 +972,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog17.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(16)">View Specs</button>
             <dialog id="dialog17">
                 <ul>
                   <li>Screen: IPS LCD</li>
@@ -950,7 +987,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1z1_HE2I2mhGsUoMiqCNq1x4T2H0QjtcD"> 
+            <img  class="pic" src="https://i.imgur.com/IeCkpyk.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 6s Plus</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -979,7 +1016,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog18.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(17)">View Specs</button>
             <dialog id="dialog18">
                 <ul>
                   <li>Screen: IPS LCD</li>
@@ -994,7 +1031,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1RtwQYVmGTgOEj0SBjXmHj9jIa8hbN-h9"> 
+            <img  class="pic" src="https://i.imgur.com/iPhJLIH.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 6s</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -1023,7 +1060,7 @@
 
       <article class="item">
             <div class="wrap">               
-            <button  class="specs" onclick="window.dialog19.showModal();">View Specs</button>
+            <button  class="specs" onclick="showSpecs(18)">View Specs</button>
             <dialog id="dialog19">
                 <ul>
                   <li>Screen: IPS LCD</li>
@@ -1038,7 +1075,7 @@
                 <button class="btn waves-effect waves-light black btn-small">Close</button>
               </form>
             </dialog>
-            <img  class="pic" src="https://drive.google.com/uc?export=download&id=1q5GTNCiPUj7x1He4wQhgQXH242dXnsvI"> 
+            <img  class="pic" src="https://i.imgur.com/5FyiqgU.png"> 
             </div>
             <p style="font-weight: bold; font-size: 1.25em" class="label">iPhone 6</p>
             <select id="a" onchange="load()" class="browser-default">
@@ -1076,6 +1113,14 @@
               <button class="btn waves-effect waves-light black btn-small">Close</button>
           </form>
       </dialog>`
+
+      <dialog id="dialog0">
+          <p>Scroll down to view your trade options!</p>
+          <br>
+          <form method="dialog">
+              <button class="btn waves-effect waves-light black btn-small">Close</button>
+          </form>
+      </dialog>`
   
     <footer>
             <p>COPYRIGHT© 2021 iSAVE, LTD. ALL RIGHTS RESERVED.</p>
@@ -1108,18 +1153,78 @@ function updateCount() {
 }
 updateCount();
 
+function showSpecs(i) {
+  items = document.querySelectorAll(".item");
+  let list = items[i].querySelectorAll("li");
+
+ document.querySelector("#main").innerHTML +=  `<div class="back">
+        </div>
+        <div style="padding: 10px; flex-direction: column" class="mod">
+              <h5 style="text-align: center">Specifications</h5>   
+              <br> 
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[0].textContent}</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[1].textContent}</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[2].textContent}</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[3].textContent}</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[4].textContent}</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[5].textContent}</p>
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">${list[6].textContent}</p>
+              <br>
+              <div style="display: flex">
+              <button onclick="discard()" class="waves-effect waves-light black btn-small" style="max-width: 120px; margin: auto; width: 40%">Close</button>
+              
+              </div>
+           </div>`
+}
+
+function showTrade () {
+  document.querySelector("#main").innerHTML +=  `<div class="back">
+        </div>
+        <div style="padding: 10px; flex-direction: column" class="mod">
+              <h5 style="text-align: center">Notification</h5>   
+              <br> 
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">Scroll down to view your trade options!</p>
+              <br>
+              <div style="display: flex">
+              <button onclick="discard()" class="waves-effect waves-light black btn-small" style="max-width: 120px; margin: auto; width: 40%">Close</button>
+              
+              </div>
+           </div>`
+}
+
+function showAdded () {
+  document.querySelector("#main").innerHTML +=  `<div class="back">
+        </div>
+        <div style="padding: 10px; flex-direction: column" class="mod">
+              <h5 style="text-align: center">Notification</h5>   
+              <br> 
+              <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">Added to Cart!</p>
+              <br>
+              <div style="display: flex">
+              <button onclick="discard()" class="waves-effect waves-light black btn-small" style="max-width: 120px; margin: auto; width: 40%">Close</button>
+              
+              </div>
+           </div>`
+}
+
+function discard() {
+  document.querySelector(".back").remove();
+  document.querySelector(".mod").remove();
+}
+
 
 function add(i) {
 
     items = document.querySelectorAll(".item");
     let confirm = items[i].querySelectorAll(".btn");
-    console.log(confirm[1].textContent);
+    //console.log(confirm[1].textContent);
     if (confirm[1].textContent != "CONFIRM?") 
       confirm[1].textContent = "CONFIRM?";
     else {
            let price = items[i].querySelector(".price").textContent;
           let t=0, j=0, k=0, sign;
-          if (price[0] != "$") t=1;
+          if (price[0] != "$") {
+          t=1; }
           if (price[0] === "Y") sign=-1;
           let ndevice;
           let tmp = "";
@@ -1137,8 +1242,8 @@ function add(i) {
             if (sign === -1)
               price = '-' + tmp;
             else
-              price = '-' + tmp;
-            console.log(price);
+              price = tmp;
+            //console.log(price);
           }
             
           let device = items[i].querySelector(".label").textContent;
@@ -1196,11 +1301,13 @@ function add(i) {
             sessionStorage.setItem("cart", JSON.stringify(e));
           }
           updateCount();
-          window.dialog.showModal();
+          
           confirm[1].textContent = "ADD TO CART";
+          showAdded();
       }
   }
 //add();
+
 
 function reduce(i, type) {
 
@@ -1250,7 +1357,6 @@ function clr() {
 //clr();
 
 
-
 function load() {
             google.script.run.withSuccessHandler(showOptions).loadOptions();
         }
@@ -1282,11 +1388,17 @@ function showOptions(list) {
           }
         }
       })
+     if (sessionStorage.getItem("persist") === "true") {   
+       // showTrade();
+}
 }
 load();
 function unpersist() {
   sessionStorage.setItem("persist", false);
 }
+if (sessionStorage.getItem("persist") != "NULL" && sessionStorage.getItem("persist") === "true") {
+   showTrade();
+  } 
 
     </script>
   </body>

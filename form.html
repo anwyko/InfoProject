@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name='color-scheme' content='light'>
 
     <style>
       * {
@@ -82,7 +83,7 @@
             <nav>
             <div class="nav-wrapper">
               <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
-              src="https://drive.google.com/uc?export=download&id=1nbkr2Z9Ulrwn6kNQuMK1cqkdcumEcryU"></a>
+              src="https://i.imgur.com/WkcY6XS.png"></a>
               <a href="" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
@@ -106,7 +107,7 @@
 
     <main>
       <h3 id="labeltop" style="text-align:center;">Checkout</h3>
-      <p class="inst" style="text-align:center">Please provide the following information</p>
+      <div class="container"> <p class="inst" style="text-align:center">Please provide the following information to complete your order</p><div>
       <div style="max-width:700px" class="container">
         <form id="form">
           <div class="row">
@@ -132,6 +133,17 @@
                 <label for="icon_telephone">Telephone</label>
               </div>
             </div>
+            <dialog id="dialog">
+          <h5>Order Received!</h5>
+          <br>
+          <p>We'll contact you within 24 hours to set up an appointment.</p>
+          <p>Thank you for choosing iSave and have a great day!</p>
+          <br>
+          <br>
+          <form method="dialog">
+              <button onclick="index()" class="btn waves-effect waves-light black btn-small">Close</button>
+          </form>
+      </dialog>`
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">contact_mail</i>
@@ -155,18 +167,6 @@
           </form>
         </form>
       </div>
-
-      <dialog id="dialog">
-          <h5>Order Received!</h5>
-          <br>
-          <p>We'll contact you within 24 hours to set up an appointment.</p>
-          <p>Thank you for choosing iSave and have a great day!</p>
-          <br>
-          <br>
-          <form method="dialog">
-              <button onclick="index()" class="btn waves-effect waves-light black btn-small">Close</button>
-          </form>
-      </dialog>`
       
     </main>
 
@@ -215,7 +215,13 @@ function submit(event){
 }
 
 function index() {
-window.open("<?= ScriptApp.getService().getUrl(); ?>?v=index", "_top");
+  clr();
+  window.open("<?= ScriptApp.getService().getUrl(); ?>?v=index", "_top");
+}
+
+function clr() {
+  sessionStorage.clear();
+  updateCount();
 }
   
 document.forms['form'].addEventListener('submit', submit);
