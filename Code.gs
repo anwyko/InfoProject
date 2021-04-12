@@ -10,13 +10,13 @@ function doGet(e) {
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
   Route.path("form", loadForm);
-  Route.path("jalissa", loadJalissa);
+  Route.path("temp", loadJalissa);
   Route.path("mithra", loadMithra);
 
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
   } else {
-    return render("index");
+    return render("testmenu");
   }
 }
 
@@ -78,7 +78,7 @@ function loadForm() {
 }
 
 function loadJalissa() {
-  return render("jalissa");
+  return render("temp");
 }
 function loadMithra() {
   return render("mithra");
