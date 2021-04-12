@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width">
+    <meta name='color-scheme' content='light'>
+
+    <style>
+      * {
+          box-sizing: border-box;
+      }
+    
+      body {
+        display: grid;
+        grid-template-rows: 1fr 15fr .5fr;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.85em;
+        color: white;
+        background-color: black;
+        box-shadow: 0px 0 10px rgba(0, 0, 0, 0.7);
+
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+      }
+
+      nav ul li:hover {
+        background-color: grey;
+      }
+
+      .brand-logo, .brand-logo img {
+          height: 100%;
+      }
+
+      #label {
+        font-size:2 rem;
+        font-family: Impact, Charcoal, sans-serif;
+        text-align: center;
+      }
+
+      .inst {
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .nav-wrapper {
+        height: 100%;
+        background-color: black;
+      }
+
+      ::selection {
+        border: black;
+        color: #000;
+      }
+
+      ul.dropdown-content.select-dropdown li span {
+        color: #000; 
+      }
+
+      #cartIcon {
+        position: relative;
+        left: 10px;
+      }
+
+      #cartIconNav {
+        position: relative;
+        margin-right: 5px;
+      }
+      h1 {
+       // text-align: center;
+        font-size: 50px;
+        font-family: Impact, Charcoal, sans-serif;
+        text-align: center;
+      }
+      .section p {
+        background-color:white;
+       width: 70vw;
+       margin:0 auto; 
+       text-align: center;
+       border: 3px solid black;
+       border-radius: 10px;
+       opacity: 0.8;
+       //position: center;
+    //   font-size: 1.1rem;
+    //   font-weight: bold;
+      }
+      #banner::before {
+        //background-image: url("https://cms.qz.com/wp-content/uploads/2017/08/iphones-over-the-years.jpeg?quality=75&strip=all&w=1900&h=1072");
+        background-image: url("https://i.imgur.com/GK0EV2D.jpg");
+        //https://i.imgur.com/GK0EV2D.jpg
+        background-size: 100%;
+        background-position: center top;
+        background-repeat: no-repeat;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -2;
+        opacity: 0.2;
+        margin: auto;        
+      }
+
+      #map{
+        height:200px;
+        width:50%;
+      //  border: 3px solid black;
+      //  position : center;
+
+      }
+
+      //***YOUR CSS GOES HERE***//
+
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+            <nav>
+            <div class="nav-wrapper">
+              <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
+              src="https://i.imgur.com/WkcY6XS.png"></a>
+              <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+                <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+                <li id="cart"></li>
+              </ul>
+            </div>
+          </nav>
+
+          <ul class="sidenav" id="items">
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
+            <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=about">About</a></li>
+            <li id="navCart"></li>
+          </ul>
+    </header>
+
+    <main>
+            <!-- YOUR HTML GOES HERE AS WELL -->
+            <div id="banner" class = "wrapper">
+              <h1>About Us</h1>
+
+               <div class="section">
+                  <p>Our goal is to ensure the access to and ability of the customers to get rid or exchange their old phones for a newer/better version at a cheaper more convenient price. With our wide array of options offered, we allow for a central location to find the best quality phone at the right price. This is done through our innovative program which calculates the value of the customer’s trade-in phones which is quick and easy to maneuver. Customers are also able to trade in their phones for cash as another means of getting rid of their older phones. </p>
+                 </div>
+              </div> 
+             <div id ="map"></div> 
+
+    </main>
+
+    <footer>
+            <p>COPYRIGHT© 2021 TVG Wireless, LTD. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>    
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+
+        var dropdowns = document.querySelectorAll('.dropdown-trigger');
+        for (var i = 0; i < dropdowns.length; i++){
+            M.Dropdown.init(dropdowns[i]);
+        };
+
+        let cartCount = 0;
+
+        document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+        <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+        document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+        <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+
+        //***YOUR JAVASCRIPT GOES HERE***//
+        function initMap(){
+          var location ={ lat: 10.657820, lng: -61.516708};
+          var map= new google.maps.Map(document.getElementById("map"),{
+              zoom: 4,
+              center: location
+          });
+          var marker = new google.maps.Marker({
+              position: location,
+              map:map
+          });
+        }
+    </script> 
+   <script async defer src="" ></script>
+
+  </body>
+
+</html>
+

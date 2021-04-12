@@ -1,130 +1,281 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <base target="_top">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <meta name="viewport" content="width=device-width">
-    <meta name='color-scheme' content='light'>
+<head>
+	<!-- HEADER AND FOOTER TEMPLATE (DO NOT EDIT - JUST COPY AND PASTE)-->
+	<base target="_top">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <meta name='color-scheme' content='light'>
 
-    <style>
-      * {
-          box-sizing: border-box;
-      }
-    
-      body {
-        display: grid;
-        grid-template-rows: 1fr 15fr .5fr;
-      }
+	<style>
+		* {
+			box-sizing: border-box;
+		}
 
-      footer {
-        text-align: center;
-        font-size: 0.85em;
-        color: white;
-        background-color: black;
-        box-shadow: 0px 0 10px rgba(0, 0, 0, 0.7);
+		body {
+			//border: solid red;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			//height: 100vh;
+		}
 
-      }
+		nav {
+			height: 100% position: sticky;
+			top: 0;
+		}
 
-      nav {
-        position: sticky;
-        top: 0;
-      }
+		nav ul li:hover {
+			background-color: grey;
+		}
 
-      nav ul li:hover {
-        background-color: grey;
-      }
+		.brand-logo,
+		.brand-logo img {
+			height: 100%;
+		}
 
-      .brand-logo, .brand-logo img {
-          height: 100%;
-      }
+		.nav-wrapper {
+			height: 100%;
+			background-color: black;
+		}
 
-      #label {
-        font-size:2 rem;
-        font-family: Impact, Charcoal, sans-serif;
-        text-align: center;
-      }
+		#cartIcon {
+			position: relative;
+			left: 10px;
+		}
 
-      .inst {
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-align: center;
-      }
+		#cartIconNav {
+			position: relative;
+			margin-right: 5px;
+		}
 
-      .nav-wrapper {
-        height: 100%;
-        background-color: black;
-      }
+		main {
+			display: flex;
+			flex-direction: column;
+      margin: auto;
+		}
 
-      ::selection {
-        border: black;
-        color: #000;
-      }
+		#head {
+			//border: solid red;
+		}
 
-      ul.dropdown-content.select-dropdown li span {
-        color: #000; 
-      }
+		.items {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+      justify-content: center;
+		}
 
-      #cartIcon {
-        position: relative;
-        left: 10px;
-      }
+		.item {
+			position: relative;
+			padding: 20px;
+			flex-basis: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			margin-bottom: 50px;
+      max-width: 250px;
+      //height: 100%;
+		}
 
-      #cartIconNav {
-        position: relative;
-        margin-right: 5px;
-      }
-      h1 {
-       // text-align: center;
-        font-size: 50px;
-        font-family: Impact, Charcoal, sans-serif;
-        text-align: center;
-      }
-      .section p {
-       width:33.33%;
-       margin:0 auto; 
-       text-align: center;
-       border: 3px solid black;
-       position: center;
-    //   font-size: 1.1rem;
-    //   font-weight: bold;
-      }
-      #banner::before {
-        background-image: url("https://cms.qz.com/wp-content/uploads/2017/08/iphones-over-the-years.jpeg?quality=75&strip=all&w=1900&h=1072");
-        background-size: 100%;
-        background-position: center top;
-        background-repeat: no-repeat;
-        content: "";
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: -2;
-        opacity: 0.2;
-        margin: auto;        
-      }
+		@media screen and (min-width: 1000px) {
+			.item {
+				flex-basis: 25%;
+        min-width: 200px;
+        max-width: 300px;
+			}
+		}
 
-      #map{
-        height:200px;
-        width:50%;
-      //  border: 3px solid black;
-      //  position : center;
+		article:hover button {
+			visibility: visible;
+		}
 
-      }
+		.pic {
+			width: 100%;
+			// height: 100%;
+		}
 
-      //***YOUR CSS GOES HERE***//
+		article:hover .pic {
+			transition: 0.3s;
+			filter: blur(2px);
+		}
+
+		article {
+			position: relative;
+		}
+
+		.label {
+			margin: auto;
+			margin-top: 5px;
+			margin-left: 0;
+			margin-bottom: 5px;
+		}
+
+		.price {
+			margin: auto;
+			margin-top: 5px;
+			margin-left: 0;
+			margin-bottom: 10px;
+			color: red;
+		}
+
+		.wrap {
+			position: relative;
+		}
+
+		.specs {
+			width: 100%;
+			position: absolute;
+			top: 46%;
+			margin: auto;
+			background-color: transparent;
+			border: solid black;
+			border-radius: 5px;
+			color: white;
+			visibility: hidden;
+			z-index: 2;
+		}
+
+		.atc {
+			background-color: black;
+			border: solid black;
+			border-radius: 5px;
+			color: white;
+			height: 2rem;
+		}
+
+		.specs:focus {
+			background-color: black;
+		}
+
+		footer {
+			text-align: center;
+			font-size: 0.85em;
+			background-color: black;
+			color: white;
+			box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
+      margin-top: 50px;
+		}
+
+    #banner {
+      position: relative;
+      width: 100vw;
+    }
+
+		#banner::before {
+			//background-image: url("https://drive.google.com/uc?export=download&id=1oj37E9Q4Vs6TuXnTHYnxcMzU8lBJkIkA");
+      background-image: url("https://i.imgur.com/GK0EV2D.jpg");
+			background-size: 100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			//background-attachment: fixed;
+			//min-height: 100vh;
+			//min-width: 75vw;
+			content: "";
+			//object-fit: cover;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			z-index: -2;
+			opacity: 0.2;
+			top: -10px;
+			//margin: auto;
+		}
+
+		@media screen and (max-width: 600px) {
+			#banner::before {
+				background-size: 150%;
+			}
+		}
 
 
-    </style>
+		#labeltop {
+			font-size: 2rem;
+			font-family: Impact, Charcoal, sans-serif;
+			text-align: center;
+			//position: static;
+		}
+
+		.inst {
+			font-size: 1.1rem;
+			font-weight: bold;
+			//font-family: Impact, Charcoal, sans-serif;
+			text-align: center;
+		}
+
+    #here:active {
+      color: purple;
+    }
+
+    .section {
+      margin: auto;
+      width: 80vw;
+      //style="max-width: 700px"
+      height: fit-content;
+      margin-bottom: 50px;
+      //padding: 10px;
+      //border: solid black;
+    }
+
+    .section1 {
+      margin: auto;
+      width: 80vw;
+      max-width: 800px;
+      height: fit-content;
+      //padding: 10px;
+      //border: solid black;
+    }
+
+    #about {
+      //margin-top: 50px;
+      font-size: 3.1rem;
+      font-family: Impact, Charcoal, sans-serif;
+      text-align: center;
+    }
+
+    #desc {
+     // font-size: 1rem;
+      font-weight: 500;
+      text-align: center;
+      width: 80vw;
+      margin: auto;
+      margin-top: -20px;
+      //border: solid black;
+      border-radius: 10px;
+      background-color: white;
+      opacity: 0.7;
+      padding: 15px;
+      
+    }
+
+    @media screen and (min-width: 600px) {
+			#desc {
+				width: 50vw;
+        max-width: 500px;
+			}
+		}
+
+    h4 {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-weight: 300;
+    }
+
+	</style>
   </head>
 
   <body>
     <header>
+      <div class="navbar-fixed">
             <nav>
             <div class="nav-wrapper">
               <a href="<?= ScriptApp.getService().getUrl(); ?>?v=index" class="brand-logo"><img id="logo" 
               src="https://i.imgur.com/WkcY6XS.png"></a>
-              <a href="#" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <a href="" data-target="items" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
                 <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=estimator">Estimator</a></li>
@@ -133,6 +284,7 @@
               </ul>
             </div>
           </nav>
+      </div>
 
           <ul class="sidenav" id="items">
             <li><a href="<?= ScriptApp.getService().getUrl(); ?>?v=index">Home</a></li>
@@ -144,19 +296,43 @@
 
     <main>
             <!-- YOUR HTML GOES HERE AS WELL -->
-            <div id="banner" class = "wrapper">
-              <h1>About Us</h1>
+			<div id="banner" class="section">
+				<h3 id="about">About Us</h3>
+				<br>
+        <p id="desc">At our core, our mission is to provide quality devices at prices that won't hurt your pockets. We aim to provide an avenue for customers to stay at the cutting-edge of technology, while saving money and being kind to the environment </p>
+        </br>
+			</div>
 
-               <div class="section">
-                  <p>Our goal is to ensure the access to and ability of the customers to get rid or exchange their old phones for a newer/better version at a cheaper more convenient price. With our wide array of options offered, we allow for a central location to find the best quality phone at the right price. This is done through our innovative program which calculates the value of the customer’s trade-in phones which is quick and easy to maneuver. Customers are also able to trade in their phones for cash as another means of getting rid of their older phones. </p>
-                 </div>
-              </div> 
-             <div id ="map"></div> 
+      <div class="section1">
+        <h4>Contact Us </h4>
+        <p>Phone: <a href="tel:+18687125423">+1 (868) 712-5423</a></h>
+        <p>Email: <a href="mailto:isavett@gmail.com"> isavett@gmail.com</a></p>
+        <br>
+      </div>
 
+<div class="section1" style="border-bottom:solid gray 1px;width:80vw;margin:auto"></div>
+      <br>
+      <div class ="section1">
+        <h4>Business Hours</h4>
+        <p>Mondays-Fridays: 9am-5pm</p>
+        <p>Saturday: 9am-3pm</p>
+        <p>Sunday: Closed</p>
+        <br>
+
+ <div class="section1" style="border-bottom:solid gray 1px;width:80vw;margin:auto"></div>  
+      <br>
+      <div class="section1">
+        <h4>Location </h4>
+        <p>73 Maraval Road</p>
+        <p>Port of Spain</p>
+        <p>Trinidad and Tobago</p>
+          <br><div id ="map"></br>
+            </div> 
+      </div>
     </main>
 
     <footer>
-            <p>COPYRIGHT© 2021 TVG Wireless, LTD. ALL RIGHTS RESERVED.</p>
+            <p>COPYRIGHT© 2021 iSave, LTD. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -172,18 +348,26 @@
             M.Dropdown.init(dropdowns[i]);
         };
 
-        let cartCount = 0;
+function updateCount() {
+    if (sessionStorage.getItem("count") === null){
+      sessionStorage.setItem("count", 0);
+    }
+    let count = sessionStorage.getItem("count");
+    
 
-        document.querySelector("#cart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-        <i id="cartIcon" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
-        document.querySelector("#navCart").innerHTML = `<a href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
-        <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${cartCount})</a>`;
+      document.querySelector("#cart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIcon" class="material-icons left">shopping_cart</i>(${count})</a>`;
+      document.querySelector("#navCart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
+      <i id="cartIconNav" class="material-icons left">shopping_cart</i>(${count})</a>`;
+}
+updateCount();
 
         //***YOUR JAVASCRIPT GOES HERE***//
         function initMap(){
-          var location ={ lat: 10.657820, lng: -61.516708};
+          //var location ={ lat: 10.657820, lng: -61.516708};
+          var location ={lat: 10.666165229430037, lng: -61.518956044558124};
           var map= new google.maps.Map(document.getElementById("map"),{
-              zoom: 4,
+              zoom: 15,
               center: location
           });
           var marker = new google.maps.Marker({
@@ -192,9 +376,9 @@
           });
         }
     </script> 
-   <script async defer src="" ></script>
-
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE&callback=initMap ></script>
   </body>
 
 </html>
+
 
