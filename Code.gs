@@ -16,7 +16,7 @@ function doGet(e) {
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
   } else {
-    return render("testmenu");
+    return render("index");
   }
 }
 
