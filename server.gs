@@ -5,19 +5,19 @@ Route.path = function(route, callback) {
 }
 
 function doGet(e) {
+
   Route.path("index", loadIndex);
   Route.path("estimator", loadEstimator);
   Route.path("checkout", loadCheckOut);
   Route.path("about", loadAbout);
   Route.path("form", loadForm);
-  Route.path("temp", loadJalissa);
-  Route.path("mithra", loadMithra);
 
   if (Route[e.parameters.v]) {
     return Route[e.parameters.v]();
   } else {
     return render("index");
   }
+
 }
 
 function include(filename) {
@@ -26,9 +26,7 @@ function include(filename) {
 }
 
 function render(page, data) {
-  // var output = HtmlService.createHtmlOutput('<b>Hello, world!</b>');
-  // output.addMetaTag('viewport', 'width=device-width, initial-scale=1');
-  // var tmp = output.asTemplate();
+
   var tmp = HtmlService.createTemplateFromFile(page);
   if(data) {
     var keys = Object.keys(data);
@@ -37,7 +35,7 @@ function render(page, data) {
     });
   }
   return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-  //return tmp.evaluate().addMetaTag('viewport', 'width=device-width, initial-scale=1').addMetaTag('apple-mobile-web-app-capable', 'yes');
+
 }
 
 function loadOptions() {
@@ -61,7 +59,6 @@ function loadEstimator() {
   for (let i=0; oplist[i][1] != '-' ; i++) {
       lr2++;
   }
-  Logger.log(lr2);
   return render("estimator", {options: oplist, last: lr, last2: lr2});
 }
 
@@ -77,21 +74,14 @@ function loadForm() {
   return render("form");
 }
 
-function loadJalissa() {
-  return render("temp");
-}
-function loadMithra() {
-  return render("mithra");
-}
-
 function calculate(request){
  
-   var list3;
+  var list3;
   var index;
   var index2 = [];
   var value = {};
   var position, position2;
-  var maxbprice=0, bprice=0, bbprice=0, sprice=0, cdifference=0;
+  var maxbprice=0, bprice=0, bbprice=0;
   var s=0, b=0, h=0, t=0, fc=0, bc=0, cp=0;
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("DATA");
@@ -125,12 +115,8 @@ function calculate(request){
 
   if(bbprice < 100){bprice="Too many issues.";bbprice="Too many issues.";} 
 
-  // if(sprice!="-" && bprice!="No Purchase") {cdifference = "$" + (sprice-bbprice).toFixed(2);} 
-  // else {cdifference = "No Trade";} 
-
   value.bp = bprice;
   value.bp2 = bbprice;
-  //value.td = cdifference;
 
   return value;
   

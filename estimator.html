@@ -6,8 +6,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <meta name='color-scheme' content='light'>
-    <?!= //include('css'); ?>
-    <?!= //include('js'); ?>
 
     <style>
       * {
@@ -16,33 +14,21 @@
 
       .browser-default {
           color:black;
-          //border-color:gray;
-          //background-color:#0ea5eb;
           border-radius:10px;
       }
-      .row {  
-        //border: solid red;   
-        width: 60vw;
-      }
 
-      .section {
-        //position: relative;
-        //border: solid black;
+      .row {   
+        width: 60vw;
       }
     
       body {
-        
-        //border: solid purple;
         display: grid;
         grid-template-rows: 1fr 15fr .5fr;
         overflow-x:hidden;
-        width: 100vw;
-        
+        width: 100vw;       
       }
 
       main {
-        //position: relative;
-        //border: solid yellow;
         width: 100%;
         overflow-x:hidden;
       }
@@ -59,7 +45,6 @@
       }
 
       header {
-        //border: solid blue;
         margin-bottom: auto;
       }
 
@@ -68,20 +53,13 @@
         font-size: 0.85em;
         color: white;
         background-color: black;
-        //border: solid gray;
-          box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
-
+        box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
       }
 
       nav {
-        //border: solid gray;
         height:100%
         position: sticky;
         top: 0;
-      }
-
-      .sidenav {
-        //border: solid green;
       }
 
       nav ul li:hover {
@@ -96,13 +74,11 @@
         font-size: 2rem;
         font-family: Impact, Charcoal, sans-serif;
         text-align: center;
-        //position: static;
       }
 
       .inst {
         font-size: 1.1rem;
         font-weight: bold;
-        //font-family: Impact, Charcoal, sans-serif;
         text-align: center;
       }
 
@@ -125,11 +101,6 @@
         font-size:20px;
       }
 
-      #banner {
-        //border: solid black;
-        //position: relative;
-      }
-
       label {
         color:black;
       }
@@ -137,22 +108,15 @@
       #banner::before {
         //border: solid red;
         background-image: url("https://i.imgur.com/xdQyNqt.jpg");
-        //background-image: url("https://www.dropbox.com/s/rtv5uxmakqh879d/ip8-removebg-preview.png?dl=1");
-        //background-image: url("https://drive.google.com/uc?export=download&id=1TlgA5NHQ0T-Rhoet2EXTXqYTFCcH_-O8");
         background-size: 100%;
         background-position: center top;
         background-repeat: no-repeat;
-        //background-attachment: fixed;
-        //min-height: 100vh;
-        //min-width: 75vw;
         content: "";
-        //object-fit: cover;
         position: absolute;
         height: 100%;
         width: 100%;
         z-index: -2;
         opacity: 0.2;
-        //top: 10px;
         margin: auto;        
       }
 
@@ -191,7 +155,6 @@
       min-width: 250px;
       top:40%; 
       transform:translateY(-50%);
-      //align-self: center;
       left: 50%;
       transform:translateX(-50%);
       z-index: 5;
@@ -329,8 +292,6 @@
             </div>
             </div>
 
-           
-
             
             <div class="row">
             <button id="btn" class="btn waves-effect waves-light black btn-large" type="submit" 
@@ -383,7 +344,6 @@
 
         function showOptions(list) {
           let currentDevice = document.querySelector("#cd");
-         // let desiredDevice = document.querySelector("#dd");
           for (let i = 0; i < list.length; i++) { 
               let option = document.createElement("option");
               let option2 = document.createElement("option");
@@ -393,12 +353,12 @@
               desiredDevice.add(option2);     
           }
         }
-        //load();
 
         if (sessionStorage.getItem("count") === null){
-      sessionStorage.setItem("count", 0);
-    }
-    let count = sessionStorage.getItem("count");
+              sessionStorage.setItem("count", 0);
+        }
+
+      let count = sessionStorage.getItem("count");
     
       document.getElementById("btn").addEventListener("click",callcalculator);
       document.querySelector("#cart").innerHTML = `<a onclick="unpersist()" href="<?= ScriptApp.getService().getUrl(); ?>?v=checkout">
@@ -410,7 +370,6 @@
 
           var request = {};
           request.cd = document.getElementById("cd").value; 
-          //request.dd = document.getElementById("dd").value; 
           request.s = document.getElementById("s").value; 
           request.b = document.getElementById("b").value; 
           request.h = document.getElementById("h").value; 
@@ -427,7 +386,6 @@
         function report(value){
 
             document.getElementById("bp").value = value.bp;
-            //document.getElementById("td").value = value.bp2;
             sessionStorage.setItem("estimate", value.bp2);
             M.updateTextFields();
             if (value.bp === "Unable to accept") {
@@ -437,9 +395,8 @@
         } 
 
         function show() {
-  document.querySelector("html").innerHTML +=  `<div class="back">
-        </div>
-        <div style="padding: 10px; flex-direction: column" class="mod">
+  document.querySelector("html").innerHTML +=  `<div class="back"></div>
+            <div style="padding: 10px; flex-direction: column" class="mod">
               <h5 style="text-align: center">Notification</h5>   
               <br> 
               <p style="word-wrap: break-word; width:100%;text-align:center; font-weight: 400">Unfortunately, we are unable to accept your device due to the issue(s) indicated.</p>
@@ -450,12 +407,11 @@
               </div>
            </div>`
 }
-//show();
 
-function discard() {
-  document.querySelector(".back").remove();
-  document.querySelector(".mod").remove();
-}
+        function discard() {
+          document.querySelector(".back").remove();
+          document.querySelector(".mod").remove();
+        }
 
 
         function check() {

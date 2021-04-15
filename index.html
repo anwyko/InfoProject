@@ -2,7 +2,6 @@
 <html>
 
 <head>
-	<!-- HEADER AND FOOTER TEMPLATE (DO NOT EDIT - JUST COPY AND PASTE)-->
 	<base target="_top">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -14,11 +13,9 @@
 		}
 
 		body {
-			//border: solid red;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			//height: 100vh;
 		}
 
 		nav {
@@ -157,14 +154,10 @@
 		}
 
 		#banner::before {
-			//background-image: url("https://drive.google.com/uc?export=download&id=1oj37E9Q4Vs6TuXnTHYnxcMzU8lBJkIkA");
       background-image: url("https://i.imgur.com/xPX9uJT.jpg");
 			background-size: 100%;
 			background-position: center top;
 			background-repeat: no-repeat;
-			//background-attachment: fixed;
-			//min-height: 100vh;
-			//min-width: 75vw;
 			content: "";
 			object-fit: cover;
 			position: absolute;
@@ -172,7 +165,6 @@
 			width: 100%;
 			z-index: -2;
 			opacity: 0.2;
-			//top: 10px;
 			margin: auto;
 		}
 
@@ -186,13 +178,11 @@
 			font-size: 2rem;
 			font-family: Impact, Charcoal, sans-serif;
 			text-align: center;
-			//position: static;
 		}
 
 		.inst {
 			font-size: 1.1rem;
 			font-weight: bold;
-			//font-family: Impact, Charcoal, sans-serif;
 			text-align: center;
 		}
 
@@ -279,8 +269,6 @@
             </div>
 
     <div class="items">
-
-<!-- ADJUST SPECS, INCREMENT FIRST 2 DIALOGS, UPDATE IMAGE, CHANGE DEVICE NAME, ADJUST STORAGES, ADJUST COLORS, INCREMENT ADD FUNCTION -->
 
       <article class="item">
             <div class="wrap">               
@@ -627,7 +615,6 @@
       </article>
 
 
-
       <article class="item">
             <div class="wrap">               
             <button  class="specs" onclick="showSpecs(8)">View Specs</button>
@@ -672,7 +659,6 @@
       </article>
 
 
-
       <article class="item">
             <div class="wrap">               
             <button  class="specs" onclick="showSpecs(9)">View Specs</button>
@@ -715,6 +701,7 @@
             <p style="font-weight: bold" class="price"></p>
             <button onclick="add(9)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
+
 
       <article class="item">
             <div class="wrap">               
@@ -800,6 +787,7 @@
             <button onclick="add(11)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
       
+
       <article class="item">
             <div class="wrap">               
             <button  class="specs" onclick="showSpecs(12)">View Specs</button>
@@ -842,6 +830,7 @@
             <button onclick="add(12)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
 
+
       <article class="item">
             <div class="wrap">               
             <button  class="specs" onclick="showSpecs(13)">View Specs</button>
@@ -883,6 +872,7 @@
             <p style="font-weight: bold" class="price"></p>
             <button onclick="add(13)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
+
 
       <article class="item">
             <div class="wrap">               
@@ -927,6 +917,7 @@
             <button onclick="add(14)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
 
+
       <article class="item">
             <div class="wrap">               
             <button  class="specs" onclick="showSpecs(15)">View Specs</button>
@@ -969,6 +960,7 @@
             <p style="font-weight: bold" class="price"></p>
             <button onclick="add(15)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
+
 
       <article class="item">
             <div class="wrap">               
@@ -1014,6 +1006,7 @@
             <button onclick="add(16)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
 
+
       <article class="item">
             <div class="wrap">               
             <button  class="specs" onclick="showSpecs(17)">View Specs</button>
@@ -1057,6 +1050,7 @@
             <p style="font-weight: bold" class="price"></p>
             <button onclick="add(17)" class="btn waves-effect waves-light black btn-small">ADD TO CART</button>
       </article>
+
 
       <article class="item">
             <div class="wrap">               
@@ -1217,7 +1211,6 @@ function add(i) {
 
     items = document.querySelectorAll(".item");
     let confirm = items[i].querySelectorAll(".btn");
-    //console.log(confirm[1].textContent);
     if (confirm[1].textContent != "CONFIRM?") 
       confirm[1].textContent = "CONFIRM?";
     else {
@@ -1237,13 +1230,11 @@ function add(i) {
               tmp += (price[k]);
               j++; 
                 k++;
-                //console.log(tmp);
             }
             if (sign === -1)
               price = '-' + tmp;
             else
               price = tmp;
-            //console.log(price);
           }
             
           let device = items[i].querySelector(".label").textContent;
@@ -1263,11 +1254,9 @@ function add(i) {
           c++;
           sessionStorage.setItem("count",c);
           let entry;
-          //console.log(t);
           if (t === 0)
             entry = {"type": "p", "qty": 1,"color": color,"device": device, "storage": rom, "price": price};
           else {entry = {"type": "t", "qty": 1,"color": color,"device": device, "ndevice": ndevice,"storage": rom, "price": price};
-          //console.log(entry);
           }
 
           if (sessionStorage.getItem("cart") === null){
@@ -1277,7 +1266,6 @@ function add(i) {
           else {
             let e = JSON.parse(sessionStorage.getItem("cart"));
             if (entry.type === "p") {
-              //let f1 = e.filter(function(x)return (x.type === "p"));
               for (let i=0;i<e.length;i++){
                 if (e[i].type === "p") {
                   if ((entry.device === e[i].device) && (entry.storage === e[i].storage) && (entry.color === e[i].color) && (entry.price === e[i].price)) {
@@ -1306,7 +1294,6 @@ function add(i) {
           showAdded();
       }
   }
-//add();
 
 
 function reduce(i, type) {
@@ -1337,7 +1324,6 @@ function reduce(i, type) {
       sessionStorage.setItem("cart", JSON.stringify(e));
       updateCount();
 }
-//reduce();
 
 function del(i) {
       let c = sessionStorage.getItem("count");
@@ -1348,18 +1334,17 @@ function del(i) {
       sessionStorage.setItem("cart", JSON.stringify(e));
       updateCount();
 }
-//del();
 
 function clr() {
   sessionStorage.clear();
   updateCount();
 }
-//clr();
 
 
 function load() {
             google.script.run.withSuccessHandler(showOptions).loadOptions();
         }
+
 function showOptions(list) {
 
       let est = sessionStorage.getItem("estimate");
@@ -1389,8 +1374,7 @@ function showOptions(list) {
         }
       })
      if (sessionStorage.getItem("persist") === "true") {   
-       // showTrade();
-}
+      }
 }
 load();
 function unpersist() {
